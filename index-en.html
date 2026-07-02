@@ -754,10 +754,19 @@
       grid-template-rows: 1fr 1fr;
     }
 
+    .atlas-zoom-frame {
+      overflow: hidden;
+    }
+
     .atlas-side img {
       height: 210px;
       width: 100%;
       object-fit: cover;
+    }
+
+    .atlas-zoom-img {
+      transform: scale(1.08);
+      transform-origin: center;
     }
 
     .atlas-text {
@@ -1418,7 +1427,9 @@
 
         <div class="atlas-side">
           <img src="Visual/15.jpg" alt="Laboratory" />
-          <img src="Visual/Airbrush-IMAGE-ENHANCER-1780429889458-1780429889458.png" alt="Molecular protein" />
+          <div class="atlas-zoom-frame">
+            <img class="atlas-zoom-img" src="Visual/Airbrush-IMAGE-ENHANCER-1780429889458-1780429889458.png" alt="Molecular protein" />
+          </div>
         </div>
       </div>
 
