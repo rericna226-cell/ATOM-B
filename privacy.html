@@ -1053,6 +1053,23 @@
     })();
 
     (function () {
+      function getCurrentSectionId() {
+        var sections = Array.prototype.slice.call(document.querySelectorAll("main[id], section[id]"));
+        if (!sections.length) return "";
+
+        var hashId = window.location.hash.replace(/^#/, "");
+        if (hashId && document.getElementById(hashId)) return hashId;
+
+        var marker = window.scrollY + Math.max(140, window.innerHeight * 0.3);
+        var currentId = "";
+
+        sections.forEach(function (section) {
+          if (section.offsetTop <= marker) currentId = section.id;
+        });
+
+        return currentId || sections[0].id || "";
+      }
+
       function initLang(switcherId, toggleId, menuId) {
         var switcher = document.getElementById(switcherId);
         var toggle = document.getElementById(toggleId);
@@ -1066,6 +1083,18 @@
         }
 
         function open() {
+          var currentSectionId = getCurrentSectionId();
+          var links = menu.querySelectorAll("a[href]");
+
+          links.forEach(function (link) {
+            var baseHref = link.getAttribute("data-base-href") || link.getAttribute("href");
+            if (!link.hasAttribute("data-base-href")) link.setAttribute("data-base-href", baseHref);
+
+            var url = new URL(baseHref, window.location.href);
+            url.hash = currentSectionId ? currentSectionId : "";
+            link.setAttribute("href", url.pathname + url.search + url.hash);
+          });
+
           menu.hidden = false;
           switcher.classList.add("open");
           toggle.setAttribute("aria-expanded", "true");
