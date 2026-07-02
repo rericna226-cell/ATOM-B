@@ -92,6 +92,12 @@
       color: var(--dark);
     }
 
+    .logo-img {
+      height: 44px;
+      width: auto;
+      display: block;
+    }
+
     .logo-mark {
       width: 54px;
       height: 54px;
@@ -141,12 +147,15 @@
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      border: 1px solid var(--blue);
+      border: 1px solid #8ab1c9;
       color: var(--blue);
-      padding: 13px 24px;
-      font-weight: 600;
+      height: 44px;
+      padding: 0 16px;
+      font-weight: 800;
+      font-size: 14px;
+      letter-spacing: 0.02em;
       transition: 0.25s ease;
-      background: transparent;
+      background: rgba(255, 255, 255, 0.76);
       cursor: pointer;
     }
 
@@ -375,6 +384,13 @@
       font-size: 4rem;
       font-weight: 900;
       box-shadow: 0 0 35px rgba(43, 217, 208, 0.4);
+    }
+
+    .hero-icon img {
+      width: 78%;
+      height: 78%;
+      object-fit: contain;
+      display: block;
     }
 
     .hero h1 {
@@ -988,6 +1004,10 @@
         font-size: 1.4rem;
       }
 
+      .logo-img {
+        height: 36px;
+      }
+
       .logo-mark {
         width: 44px;
         height: 44px;
@@ -1044,9 +1064,8 @@
   <!-- NAV -->
   <header class="navbar">
     <div class="container nav-inner">
-      <a href="#inicio" class="logo">
-        <div class="logo-mark">A</div>
-        <span>AT<span>O</span>M-B</span>
+      <a href="#inicio" class="logo" aria-label="ATOM-B">
+        <img class="logo-img" src="ATOM-B_1.png" alt="ATOM-B" />
       </a>
 
       <nav class="nav-links" id="navLinks">
@@ -1113,7 +1132,9 @@
   <main id="inicio" class="hero">
     <div class="container">
       <div class="hero-content">
-        <div class="hero-icon">⌬</div>
+        <div class="hero-icon">
+          <img src="Visual/ATOM-B_2.png" alt="ATOM-B" />
+        </div>
         <h1>
           Física determinista para
           <strong>descubrimiento de fármacos</strong>
@@ -1205,7 +1226,7 @@
   <section id="como-funciona" class="how">
     <div class="container split">
       <div class="image-frame">
-        <img src="assets/scientist.jpg" alt="Investigador en laboratorio" />
+        <img src="Visual/3.png" alt="Investigador en laboratorio" />
       </div>
 
       <div>
