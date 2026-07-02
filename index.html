@@ -78,8 +78,8 @@
       height: 92px;
       display: flex;
       align-items: center;
-      justify-content: space-between;
-      gap: 32px;
+      justify-content: flex-start;
+      gap: 26px;
     }
 
     .logo {
@@ -111,7 +111,10 @@
     .nav-links {
       display: flex;
       align-items: center;
-      gap: 34px;
+      justify-content: center;
+      gap: 26px;
+      flex: 1;
+      white-space: nowrap;
       color: #4d5560;
       font-size: 0.98rem;
     }
@@ -124,6 +127,14 @@
       display: flex;
       align-items: center;
       gap: 14px;
+    }
+
+    .nav-right {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-left: auto;
+      flex: 0 0 auto;
     }
 
     .btn {
@@ -158,7 +169,7 @@
 
     .lang-switcher {
       position: relative;
-      margin-left: 18px;
+      margin-left: 0;
     }
 
     .lang {
@@ -1047,28 +1058,30 @@
         <a href="privacy.html">Privacidad</a>
       </nav>
 
-      <div class="nav-actions">
-        <a href="#contacto" class="btn">Contactar</a>
-      </div>
-
-      <div class="lang-switcher" id="langSwitcher">
-        <button class="lang" type="button" aria-label="Seleccionar idioma" aria-haspopup="true" aria-expanded="false" aria-controls="langMenu" id="langToggle">
-          <span>ES</span>
-          <span class="lang-caret" aria-hidden="true">⌄</span>
-        </button>
-        <div class="lang-menu" id="langMenu" hidden>
-          <a href="index.html" class="active">
-            <span>Español</span>
-          </a>
-          <a href="index-en.html">
-            <span>English</span>
-          </a>
+      <div class="nav-right">
+        <div class="nav-actions">
+          <a href="#contacto" class="btn">Contactar</a>
         </div>
-      </div>
 
-      <button class="nav-toggle" id="navToggle" type="button" aria-label="Abrir menú" aria-controls="mobileMenu" aria-expanded="false">
-        <span></span><span></span><span></span>
-      </button>
+        <div class="lang-switcher" id="langSwitcher">
+          <button class="lang" type="button" aria-label="Seleccionar idioma" aria-haspopup="true" aria-expanded="false" aria-controls="langMenu" id="langToggle">
+            <span>ES</span>
+            <span class="lang-caret" aria-hidden="true">⌄</span>
+          </button>
+          <div class="lang-menu" id="langMenu" hidden>
+            <a href="index.html" class="active">
+              <span>Español</span>
+            </a>
+            <a href="index-en.html">
+              <span>English</span>
+            </a>
+          </div>
+        </div>
+
+        <button class="nav-toggle" id="navToggle" type="button" aria-label="Abrir menú" aria-controls="mobileMenu" aria-expanded="false">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
     </div>
   </header>
 
