@@ -1,0 +1,1680 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ATOM-B | Física determinista para descubrimiento de fármacos</title>
+
+  <style>
+    :root {
+      --dark: #07354f;
+      --blue: #0d5f8f;
+      --cyan: #2bd9d0;
+      --cyan-soft: #dceff0;
+      --mint: #e8f6f5;
+      --text: #20232a;
+      --muted: #5f6670;
+      --white: #ffffff;
+      --line: #9ccdd2;
+      --shadow: 0 18px 45px rgba(7, 53, 79, 0.12);
+      --radius: 22px;
+      --max: 1180px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: "Inter", "Avenir Next", Arial, sans-serif;
+      color: var(--text);
+      background: #fff;
+      line-height: 1.6;
+    }
+
+    body.menu-open {
+      overflow: hidden;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .container {
+      width: min(100% - 48px, var(--max));
+      margin: 0 auto;
+    }
+
+    /* NAV */
+
+    .navbar {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      background: rgba(255, 255, 255, 0.96);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid rgba(7, 53, 79, 0.08);
+    }
+
+    .nav-inner {
+      height: 92px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 32px;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      font-weight: 800;
+      font-size: 2rem;
+      letter-spacing: 0.06em;
+      color: var(--dark);
+    }
+
+    .logo-mark {
+      width: 54px;
+      height: 54px;
+      border: 2px solid var(--cyan);
+      border-radius: 16px;
+      display: grid;
+      place-items: center;
+      color: var(--cyan);
+      font-weight: 900;
+      font-size: 1.4rem;
+    }
+
+    .logo span span {
+      color: var(--cyan);
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 34px;
+      color: #4d5560;
+      font-size: 0.98rem;
+    }
+
+    .nav-links a:hover {
+      color: var(--blue);
+    }
+
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid var(--blue);
+      color: var(--blue);
+      padding: 13px 24px;
+      font-weight: 600;
+      transition: 0.25s ease;
+      background: transparent;
+      cursor: pointer;
+    }
+
+    .btn:hover {
+      background: var(--blue);
+      color: white;
+    }
+
+    .btn-primary {
+      background: var(--cyan);
+      border-color: var(--cyan);
+      color: var(--dark);
+    }
+
+    .btn-primary:hover {
+      background: var(--dark);
+      border-color: var(--dark);
+      color: white;
+    }
+
+    .lang-switcher {
+      position: relative;
+      margin-left: 18px;
+    }
+
+    .lang {
+      appearance: none;
+      height: 44px;
+      padding: 0 16px;
+      border: 1px solid #8ab1c9;
+      background: rgba(255, 255, 255, 0.76);
+      color: var(--blue);
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-weight: 800;
+      font-size: 14px;
+      letter-spacing: 0.02em;
+      cursor: pointer;
+    }
+
+    .lang-caret {
+      color: rgba(13, 95, 143, 0.7);
+      font-size: 12px;
+      transition: transform 0.15s ease;
+    }
+
+    .lang-switcher.open .lang-caret {
+      transform: rotate(180deg);
+    }
+
+    .lang-menu {
+      position: absolute;
+      top: calc(100% + 10px);
+      right: 0;
+      min-width: 190px;
+      padding: 8px;
+      border: 1px solid rgba(7, 53, 79, 0.13);
+      background: rgba(255, 255, 255, 0.98);
+      box-shadow: 0 24px 80px rgba(7, 53, 79, 0.18);
+      display: grid;
+      gap: 6px;
+      z-index: 85;
+    }
+
+    .lang-menu a {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 12px 12px;
+      color: var(--dark);
+      font-size: 14px;
+      font-weight: 800;
+      border: 1px solid transparent;
+      background: transparent;
+    }
+
+    .lang-menu a:hover,
+    .lang-menu a.active {
+      background: rgba(43, 217, 208, 0.12);
+      border-color: rgba(43, 217, 208, 0.32);
+    }
+
+    .nav-toggle {
+      display: none;
+      width: 42px;
+      height: 42px;
+      border: 1px solid rgba(13, 95, 143, 0.3);
+      background: rgba(255, 255, 255, 0.76);
+      align-items: center;
+      justify-content: center;
+      gap: 5px;
+      flex-direction: column;
+      padding: 0;
+      cursor: pointer;
+    }
+
+    .nav-toggle span {
+      width: 20px;
+      height: 2px;
+      background: var(--dark);
+      border-radius: 999px;
+      display: block;
+    }
+
+    .mobile-backdrop[hidden],
+    .mobile-menu[hidden],
+    .lang-menu[hidden] {
+      display: none;
+    }
+
+    .mobile-backdrop {
+      position: fixed;
+      inset: 0;
+      background: rgba(7, 53, 79, 0.18);
+      backdrop-filter: blur(2px);
+      z-index: 90;
+    }
+
+    .mobile-menu {
+      position: fixed;
+      top: 92px;
+      left: 14px;
+      right: 14px;
+      background: rgba(255, 255, 255, 0.98);
+      border: 1px solid rgba(7, 53, 79, 0.12);
+      box-shadow: 0 28px 90px rgba(7, 53, 79, 0.18);
+      padding: 12px;
+      display: grid;
+      gap: 8px;
+      z-index: 95;
+    }
+
+    .mobile-menu a {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 12px 12px;
+      font-weight: 800;
+      font-size: 15px;
+      color: var(--dark);
+      background: rgba(220, 239, 240, 0.55);
+      border: 1px solid rgba(7, 53, 79, 0.08);
+    }
+
+    .mobile-menu a:hover {
+      background: rgba(220, 239, 240, 0.8);
+    }
+
+    .mobile-menu a.mobile-cta {
+      background: var(--dark);
+      color: #fff;
+      border-color: var(--dark);
+    }
+
+    .mobile-menu .lang-switcher {
+      width: 100%;
+      margin-left: 0;
+    }
+
+    .mobile-menu .lang {
+      width: 100%;
+      justify-content: space-between;
+      height: auto;
+      padding: 12px 12px;
+      font-size: 15px;
+      background: rgba(220, 239, 240, 0.55);
+      border: 1px solid rgba(7, 53, 79, 0.08);
+    }
+
+    .mobile-menu .lang-menu {
+      position: static;
+      top: auto;
+      right: auto;
+      min-width: 0;
+      padding: 8px 0 0;
+      border: 0;
+      background: transparent;
+      box-shadow: none;
+      gap: 8px;
+    }
+
+    /* HERO */
+
+    .hero {
+      min-height: calc(100vh - 92px);
+      display: flex;
+      align-items: center;
+      position: relative;
+      overflow: hidden;
+      background:
+        linear-gradient(rgba(7, 53, 79, 0.62), rgba(7, 53, 79, 0.58)),
+        url("assets/hero-lab.jpg") center/cover no-repeat;
+      color: white;
+      text-align: center;
+    }
+
+    .hero::after {
+      content: "";
+      position: absolute;
+      bottom: -1px;
+      left: 0;
+      width: 100%;
+      height: 80px;
+      background: white;
+      clip-path: polygon(0 70%, 100% 35%, 100% 100%, 0 100%);
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      width: min(900px, 100%);
+      margin: 0 auto;
+      padding: 90px 0 130px;
+    }
+
+    .hero-icon {
+      width: 150px;
+      height: 150px;
+      margin: 0 auto 24px;
+      border: 4px solid var(--cyan);
+      border-radius: 34px;
+      display: grid;
+      place-items: center;
+      color: var(--cyan);
+      font-size: 4rem;
+      font-weight: 900;
+      box-shadow: 0 0 35px rgba(43, 217, 208, 0.4);
+    }
+
+    .hero h1 {
+      font-size: clamp(2.8rem, 6vw, 5.8rem);
+      line-height: 0.98;
+      letter-spacing: -0.05em;
+      margin-bottom: 28px;
+      font-weight: 900;
+    }
+
+    .hero h1 strong {
+      color: var(--cyan);
+      display: block;
+    }
+
+    .hero p {
+      font-size: clamp(1.1rem, 2vw, 1.45rem);
+      max-width: 760px;
+      margin: 0 auto 34px;
+      color: rgba(255, 255, 255, 0.92);
+    }
+
+    .hero-buttons {
+      display: flex;
+      justify-content: center;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    /* SECTIONS */
+
+    section {
+      padding: 110px 0;
+    }
+
+    .section-kicker {
+      color: var(--cyan);
+      text-transform: uppercase;
+      font-weight: 800;
+      letter-spacing: 0.14em;
+      font-size: 0.82rem;
+      margin-bottom: 14px;
+    }
+
+    .section-title {
+      color: var(--dark);
+      font-size: clamp(2.2rem, 4vw, 4rem);
+      line-height: 1.05;
+      letter-spacing: -0.045em;
+      margin-bottom: 24px;
+      font-weight: 900;
+    }
+
+    .section-copy {
+      color: var(--muted);
+      font-size: 1.12rem;
+      max-width: 760px;
+    }
+
+    .center {
+      text-align: center;
+    }
+
+    .center .section-copy {
+      margin: 0 auto;
+    }
+
+    .divider {
+      width: 100%;
+      max-width: 760px;
+      height: 1px;
+      background: var(--line);
+      margin: 0 auto 64px;
+    }
+
+    /* PROBLEM */
+
+    .problem {
+      background: white;
+    }
+
+    .two-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 36px;
+      margin-top: 60px;
+    }
+
+    .problem-card {
+      background: linear-gradient(145deg, #eefafa, #d7eeee);
+      padding: 44px;
+      min-height: 260px;
+      box-shadow: var(--shadow);
+    }
+
+    .mini-icon {
+      width: 36px;
+      height: 36px;
+      background: var(--cyan);
+      border-radius: 12px;
+      margin-bottom: 22px;
+    }
+
+    .problem-card h3 {
+      color: var(--dark);
+      font-size: 1.7rem;
+      line-height: 1.15;
+      margin-bottom: 18px;
+    }
+
+    .problem-card p {
+      color: #21313b;
+      font-size: 1.03rem;
+    }
+
+    /* PROPOSAL */
+
+    .proposal {
+      background: #fbfbfb;
+    }
+
+    .highlight-box {
+      background: var(--cyan-soft);
+      padding: 44px 58px;
+      max-width: 800px;
+      margin: 50px auto;
+      text-align: center;
+      color: #1d2930;
+      font-size: 1.15rem;
+    }
+
+    .three-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 28px;
+      margin-top: 58px;
+    }
+
+    .value-card {
+      background: var(--cyan-soft);
+      padding: 44px 32px;
+      text-align: center;
+      box-shadow: var(--shadow);
+      min-height: 220px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .value-card h3 {
+      color: var(--dark);
+      font-size: 1.55rem;
+      line-height: 1.15;
+      margin-bottom: 14px;
+    }
+
+    .value-card p {
+      color: #34424c;
+    }
+
+    /* HOW */
+
+    .how {
+      background: white;
+    }
+
+    .split {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 70px;
+      align-items: center;
+    }
+
+    .image-frame {
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+
+    .image-frame img {
+      width: 100%;
+      height: 560px;
+      object-fit: cover;
+    }
+
+    .steps {
+      margin-top: 36px;
+      display: grid;
+      gap: 20px;
+    }
+
+    .step {
+      display: grid;
+      grid-template-columns: 44px 1fr;
+      gap: 18px;
+      align-items: start;
+    }
+
+    .step-number {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      background: var(--cyan);
+      color: var(--dark);
+      font-weight: 900;
+    }
+
+    .step h3 {
+      color: var(--dark);
+      margin-bottom: 4px;
+    }
+
+    .step p {
+      color: var(--muted);
+    }
+
+    /* VOXEL */
+
+    .voxel {
+      background: #f7f9fa;
+    }
+
+    /* OUTPUTS */
+
+    .outputs {
+      background: white;
+    }
+
+    .output-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 18px;
+      margin-top: 60px;
+    }
+
+    .output-card {
+      border: 1px solid rgba(7, 53, 79, 0.12);
+      padding: 28px 22px;
+      background: #fff;
+      box-shadow: 0 12px 28px rgba(7, 53, 79, 0.07);
+    }
+
+    .output-card h3 {
+      color: var(--blue);
+      font-size: 1.15rem;
+      margin-bottom: 12px;
+    }
+
+    .output-card p {
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    /* CAPABILITIES */
+
+    .capabilities {
+      background: var(--mint);
+    }
+
+    .cap-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 26px;
+      margin-top: 60px;
+    }
+
+    .cap-card {
+      background: rgba(255, 255, 255, 0.78);
+      padding: 34px;
+      min-height: 230px;
+      border: 1px solid rgba(13, 95, 143, 0.1);
+    }
+
+    .cap-card h3 {
+      color: var(--dark);
+      font-size: 1.35rem;
+      margin-bottom: 12px;
+    }
+
+    .cap-card p {
+      color: #34424c;
+    }
+
+    /* DIFFERENCE */
+
+    .difference {
+      background: white;
+    }
+
+    .comparison {
+      margin-top: 54px;
+      overflow-x: auto;
+      box-shadow: var(--shadow);
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      background: white;
+      min-width: 760px;
+    }
+
+    th,
+    td {
+      padding: 22px;
+      text-align: left;
+      border-bottom: 1px solid #e3ebef;
+    }
+
+    th {
+      background: var(--dark);
+      color: white;
+    }
+
+    td:first-child {
+      font-weight: 800;
+      color: var(--dark);
+    }
+
+    td.highlight {
+      color: var(--blue);
+      font-weight: 800;
+      background: #effafa;
+    }
+
+    /* VALIDATION */
+
+    .validation {
+      background:
+        linear-gradient(rgba(7, 53, 79, 0.84), rgba(7, 53, 79, 0.84)),
+        url("assets/molecular-bg.jpg") center/cover no-repeat;
+      color: white;
+    }
+
+    .validation .section-title,
+    .validation .section-copy {
+      color: white;
+    }
+
+    .validation-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 26px;
+      margin-top: 60px;
+    }
+
+    .validation-card {
+      border: 1px solid rgba(255, 255, 255, 0.25);
+      padding: 34px;
+      background: rgba(255, 255, 255, 0.08);
+      backdrop-filter: blur(10px);
+    }
+
+    .validation-card h3 {
+      color: var(--cyan);
+      margin-bottom: 12px;
+      font-size: 1.35rem;
+    }
+
+    .validation-card p {
+      color: rgba(255, 255, 255, 0.86);
+    }
+
+    /* ATLAS */
+
+    .atlas {
+      background: white;
+    }
+
+    .atlas-hero {
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 0;
+      margin-bottom: 76px;
+      box-shadow: var(--shadow);
+    }
+
+    .atlas-visual {
+      background:
+        linear-gradient(rgba(7, 53, 79, 0.42), rgba(7, 53, 79, 0.52)),
+        url("assets/hexagon-map.jpg") center/cover no-repeat;
+      min-height: 420px;
+      display: flex;
+      align-items: center;
+      padding: 60px;
+      color: white;
+    }
+
+    .atlas-visual h2 {
+      font-size: clamp(2.8rem, 5vw, 5rem);
+      line-height: 1.05;
+      letter-spacing: -0.06em;
+    }
+
+    .atlas-side {
+      display: grid;
+      grid-template-rows: 1fr 1fr;
+    }
+
+    .atlas-side img {
+      height: 210px;
+      width: 100%;
+      object-fit: cover;
+    }
+
+    .atlas-text {
+      display: grid;
+      grid-template-columns: 0.8fr 1.2fr;
+      gap: 80px;
+      align-items: start;
+    }
+
+    .atlas-text h2 {
+      color: var(--dark);
+      font-size: clamp(2.8rem, 5vw, 4.5rem);
+      line-height: 1.08;
+      letter-spacing: -0.06em;
+    }
+
+    .atlas-text p {
+      color: var(--dark);
+      font-size: 1.1rem;
+      margin-bottom: 22px;
+      font-weight: 500;
+    }
+
+    /* USE CASES */
+
+    .usecases {
+      background: #f7f9fa;
+    }
+
+    .usecase-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 24px;
+      margin-top: 60px;
+    }
+
+    .usecase-card {
+      background: white;
+      padding: 34px 26px;
+      box-shadow: 0 10px 26px rgba(7, 53, 79, 0.08);
+    }
+
+    .usecase-card h3 {
+      color: var(--dark);
+      margin-bottom: 12px;
+    }
+
+    .usecase-card p {
+      color: var(--muted);
+      font-size: 0.96rem;
+    }
+
+    /* CONTACT */
+
+    .contact {
+      background: white;
+    }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 0.9fr 1.1fr;
+      gap: 80px;
+      align-items: start;
+    }
+
+    .contact h2 {
+      color: var(--dark);
+      font-size: clamp(3rem, 6vw, 5rem);
+      line-height: 0.98;
+      letter-spacing: -0.06em;
+      margin-bottom: 28px;
+    }
+
+    .contact p {
+      font-size: 1.08rem;
+      color: #252b32;
+      max-width: 520px;
+    }
+
+    .form {
+      display: grid;
+      gap: 24px;
+    }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+    }
+
+    .form input,
+    .form textarea,
+    .form select {
+      width: 100%;
+      border: none;
+      border-bottom: 1px solid #aab5bd;
+      padding: 16px 0;
+      font-size: 1rem;
+      font-family: inherit;
+      outline: none;
+      background: transparent;
+    }
+
+    .form textarea {
+      min-height: 120px;
+      resize: vertical;
+    }
+
+    .form button {
+      justify-self: start;
+      background: #2b2533;
+      color: white;
+      border: 0;
+      padding: 16px 48px;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: 0.25s ease;
+    }
+
+    .form button:hover {
+      background: var(--dark);
+    }
+
+    /* FOOTER */
+
+    footer {
+      border-top: 1px solid #aab5bd;
+      padding: 48px 0;
+      background: white;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 40px;
+      align-items: start;
+      color: #59606a;
+      font-size: 0.95rem;
+    }
+
+    .footer-links {
+      display: grid;
+      gap: 6px;
+    }
+
+    .footer-links a {
+      text-decoration: underline;
+    }
+
+    .footer-copy {
+      text-align: right;
+    }
+
+    /* RESPONSIVE */
+
+    @media (max-width: 1000px) {
+      .nav-links,
+      .nav-actions {
+        display: none;
+      }
+
+      .nav-toggle {
+        display: inline-flex;
+      }
+
+      .two-grid,
+      .three-grid,
+      .split,
+      .contact-grid,
+      .atlas-text {
+        grid-template-columns: 1fr;
+      }
+
+      .output-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .cap-grid,
+      .validation-grid,
+      .usecase-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .atlas-hero {
+        grid-template-columns: 1fr;
+      }
+
+      .atlas-side {
+        display: none;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .container {
+        width: min(100% - 28px, var(--max));
+      }
+
+      section {
+        padding: 76px 0;
+      }
+
+      .nav-inner {
+        height: 78px;
+      }
+
+      .logo {
+        font-size: 1.4rem;
+      }
+
+      .logo-mark {
+        width: 44px;
+        height: 44px;
+      }
+
+      .mobile-menu {
+        top: 78px;
+      }
+
+      .hero {
+        min-height: calc(100vh - 78px);
+      }
+
+      .hero-icon {
+        width: 100px;
+        height: 100px;
+        font-size: 2.8rem;
+      }
+
+      .problem-card,
+      .highlight-box {
+        padding: 32px 24px;
+      }
+
+      .three-grid,
+      .output-grid,
+      .cap-grid,
+      .validation-grid,
+      .usecase-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .form-row {
+        grid-template-columns: 1fr;
+      }
+
+      .footer-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .footer-copy {
+        text-align: left;
+      }
+
+      .image-frame img {
+        height: 380px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- NAV -->
+  <header class="navbar">
+    <div class="container nav-inner">
+      <a href="#inicio" class="logo">
+        <div class="logo-mark">A</div>
+        <span>AT<span>O</span>M-B</span>
+      </a>
+
+      <nav class="nav-links" id="navLinks">
+        <a href="#inicio">Inicio</a>
+        <a href="#como-funciona">Cómo funciona</a>
+        <a href="#diferenciadores">En qué nos diferenciamos</a>
+        <a href="#atlas">Atlas</a>
+        <a href="#contacto">Contacto</a>
+        <a href="privacy.html">Privacidad</a>
+      </nav>
+
+      <div class="nav-actions">
+        <a href="#contacto" class="btn">Contactar</a>
+      </div>
+
+      <div class="lang-switcher" id="langSwitcher">
+        <button class="lang" type="button" aria-label="Seleccionar idioma" aria-haspopup="true" aria-expanded="false" aria-controls="langMenu" id="langToggle">
+          <span>ES</span>
+          <span class="lang-caret" aria-hidden="true">⌄</span>
+        </button>
+        <div class="lang-menu" id="langMenu" hidden>
+          <a href="index.html" class="active">
+            <span>Español</span>
+          </a>
+          <a href="index-en.html">
+            <span>English</span>
+          </a>
+        </div>
+      </div>
+
+      <button class="nav-toggle" id="navToggle" type="button" aria-label="Abrir menú" aria-controls="mobileMenu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <div class="mobile-backdrop" id="mobileBackdrop" hidden></div>
+  <div class="mobile-menu" id="mobileMenu" hidden>
+    <a href="#inicio">Inicio</a>
+    <a href="#como-funciona">Cómo funciona</a>
+    <a href="#diferenciadores">En qué nos diferenciamos</a>
+    <a href="#atlas">Atlas</a>
+    <a href="#contacto" class="mobile-cta">Contactar</a>
+    <a href="privacy.html">Privacidad</a>
+    <div class="lang-switcher mobile" id="langSwitcherMobile">
+      <button class="lang" type="button" aria-label="Seleccionar idioma" aria-haspopup="true" aria-expanded="false" aria-controls="langMenuMobile" id="langToggleMobile">
+        <span>ES</span>
+        <span class="lang-caret" aria-hidden="true">⌄</span>
+      </button>
+      <div class="lang-menu" id="langMenuMobile" hidden>
+        <a href="index.html" class="active">
+          <span>Español</span>
+        </a>
+        <a href="index-en.html">
+          <span>English</span>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- HERO -->
+  <main id="inicio" class="hero">
+    <div class="container">
+      <div class="hero-content">
+        <div class="hero-icon">⌬</div>
+        <h1>
+          Física determinista para
+          <strong>descubrimiento de fármacos</strong>
+        </h1>
+        <p>
+          ATOM-B analiza regiones funcionales de proteínas mediante mapas físicos discretos,
+          permitiendo identificar cavidades, sitios activos y regiones terapéuticas con velocidad,
+          precisión y trazabilidad.
+        </p>
+        <div class="hero-buttons">
+          <a href="#contacto" class="btn btn-primary">Solicitar demo</a>
+          <a href="#como-funciona" class="btn">Ver cómo funciona</a>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- PROBLEM -->
+  <section class="problem">
+    <div class="container">
+      <div class="center">
+        <div class="section-kicker">El dilema actual</div>
+        <h2 class="section-title">El descubrimiento computacional enfrenta dos límites</h2>
+        <p class="section-copy">
+          Las plataformas actuales suelen elegir entre simulaciones físicas costosas o modelos
+          estadísticos dependientes de datos históricos. ATOM-B propone una tercera vía:
+          análisis físico discreto, rápido y auditable.
+        </p>
+      </div>
+
+      <div class="two-grid">
+        <article class="problem-card">
+          <div class="mini-icon"></div>
+          <h3>Simulaciones físicas<br />Dinámica Molecular</h3>
+          <p>
+            Ofrecen rigor físico, pero su aplicación a sistemas completos puede requerir
+            alto costo computacional y tiempos prolongados de ejecución.
+          </p>
+        </article>
+
+        <article class="problem-card">
+          <div class="mini-icon"></div>
+          <h3>Inteligencia Artificial<br />generativa</h3>
+          <p>
+            Acelera la exploración, pero puede depender de datos históricos y perder capacidad
+            predictiva frente a blancos poco estudiados o sin precedentes.
+          </p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROPOSAL -->
+  <section class="proposal">
+    <div class="container center">
+      <div class="section-kicker">La propuesta</div>
+      <h2 class="section-title">ATOM-B analiza solo lo que físicamente importa</h2>
+      <p class="section-copy">
+        En lugar de simular todo el sistema molecular, ATOM-B identifica únicamente las regiones
+        que influyen en la interacción entre una proteína y un posible fármaco.
+      </p>
+
+      <div class="highlight-box">
+        ATOM-B mantiene el rigor de los métodos físicos tradicionales, pero reduce el trabajo
+        computacional innecesario al concentrarse en cavidades, interfaces, canales, sitios activos
+        y regiones funcionales.
+      </div>
+
+      <div class="three-grid">
+        <article class="value-card">
+          <h3>Rápido</h3>
+          <p>Procesamiento diseñado para ejecutarse en segundos o minutos según la complejidad estructural.</p>
+        </article>
+
+        <article class="value-card">
+          <h3>Físico</h3>
+          <p>Basado en observables geométricos, electrostáticos y direccionales.</p>
+        </article>
+
+        <article class="value-card">
+          <h3>Auditable</h3>
+          <p>Cada predicción puede rastrearse hasta los valores físicos del vóxel que la originó.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- HOW IT WORKS -->
+  <section id="como-funciona" class="how">
+    <div class="container split">
+      <div class="image-frame">
+        <img src="assets/scientist.jpg" alt="Investigador en laboratorio" />
+      </div>
+
+      <div>
+        <div class="section-kicker">Cómo funciona</div>
+        <h2 class="section-title">De una estructura proteica a un mapa funcional auditable</h2>
+        <p class="section-copy">
+          ATOM-B transforma una estructura molecular en mapas físicos que permiten localizar,
+          clasificar y comparar regiones funcionales.
+        </p>
+
+        <div class="steps">
+          <div class="step">
+            <div class="step-number">1</div>
+            <div>
+              <h3>Proteína 3D</h3>
+              <p>Se parte de una estructura proteica experimental o modelada.</p>
+            </div>
+          </div>
+
+          <div class="step">
+            <div class="step-number">2</div>
+            <div>
+              <h3>Evaluación por vóxeles</h3>
+              <p>El espacio molecular se divide en pequeños volúmenes tridimensionales.</p>
+            </div>
+          </div>
+
+          <div class="step">
+            <div class="step-number">3</div>
+            <div>
+              <h3>Pocket Map + Scaffold Map</h3>
+              <p>Se clasifican cavidades, canales, interfaces y regiones estructurales clave.</p>
+            </div>
+          </div>
+
+          <div class="step">
+            <div class="step-number">4</div>
+            <div>
+              <h3>Resultado trazable</h3>
+              <p>Cada predicción conserva su origen físico para revisión y auditoría.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- VOXEL -->
+  <section class="voxel">
+    <div class="container center">
+      <div class="section-kicker">Análisis físico</div>
+      <h2 class="section-title">¿Qué analiza cada vóxel?</h2>
+      <p class="section-copy">
+        ATOM-B evalúa tres propiedades fundamentales de cada región molecular.
+      </p>
+
+      <div class="three-grid">
+        <article class="value-card">
+          <h3>Confinamiento geométrico</h3>
+          <p>
+            Identifica qué tan accesible, profundo o protegido es cada espacio dentro de una proteína.
+          </p>
+        </article>
+
+        <article class="value-card">
+          <h3>Gravedad local electrostática</h3>
+          <p>
+            Evalúa las fuerzas químicas predominantes que podrían favorecer o impedir una interacción molecular.
+          </p>
+        </article>
+
+        <article class="value-card">
+          <h3>Vector gradiente direccional</h3>
+          <p>
+            Analiza la dirección e intensidad de las fuerzas que guiarían el acercamiento de una molécula terapéutica.
+          </p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- OUTPUTS -->
+  <section class="outputs">
+    <div class="container center">
+      <div class="section-kicker">Entregables</div>
+      <h2 class="section-title">Resultados listos para análisis, comparación y decisión</h2>
+      <p class="section-copy">
+        ATOM-B convierte estructuras proteicas en información accionable para equipos de investigación,
+        biotech y farmacéuticas.
+      </p>
+
+      <div class="output-grid">
+        <article class="output-card">
+          <h3>Pocket Map</h3>
+          <p>Mapa de cavidades, sitios de unión, canales e interfaces relevantes.</p>
+        </article>
+
+        <article class="output-card">
+          <h3>Scaffold Map</h3>
+          <p>Clasificación de regiones rígidas, flexibles, expuestas o sobreempaquetadas.</p>
+        </article>
+
+        <article class="output-card">
+          <h3>Centros farmacofóricos</h3>
+          <p>Identificación de puntos funcionales donde puede existir interacción terapéutica.</p>
+        </article>
+
+        <article class="output-card">
+          <h3>Reporte auditable</h3>
+          <p>Explicación trazable de cada predicción basada en propiedades físicas discretas.</p>
+        </article>
+
+        <article class="output-card">
+          <h3>Archivos interoperables</h3>
+          <p>Resultados exportables para docking, análisis estructural o diseño racional.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- CAPABILITIES -->
+  <section class="capabilities">
+    <div class="container center">
+      <div class="section-kicker">Capacidades</div>
+      <h2 class="section-title">Una plataforma para decisiones tempranas en SBDD</h2>
+      <p class="section-copy">
+        ATOM-B está diseñado para apoyar las etapas tempranas del descubrimiento racional de fármacos.
+      </p>
+
+      <div class="cap-grid">
+        <article class="cap-card">
+          <h3>Detección de cavidades</h3>
+          <p>Localiza bolsillos y espacios funcionales dentro de proteínas.</p>
+        </article>
+
+        <article class="cap-card">
+          <h3>Evaluación de drogabilidad</h3>
+          <p>Prioriza regiones con potencial terapéutico.</p>
+        </article>
+
+        <article class="cap-card">
+          <h3>Sitios alostéricos</h3>
+          <p>Identifica regiones que podrían regular múltiples funciones proteicas.</p>
+        </article>
+
+        <article class="cap-card">
+          <h3>Cofactores metálicos</h3>
+          <p>Reconoce la influencia estructural y catalítica de Zn, Fe, Mg, Cu y Mn.</p>
+        </article>
+
+        <article class="cap-card">
+          <h3>Inteligencia de variantes</h3>
+          <p>Evalúa cómo mutaciones pueden alterar función, estabilidad o resistencia.</p>
+        </article>
+
+        <article class="cap-card">
+          <h3>Atlas topológico</h3>
+          <p>Convierte estructuras proteicas en mapas consultables, comparables y escalables.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- DIFFERENCE -->
+  <section id="diferenciadores" class="difference">
+    <div class="container center">
+      <div class="section-kicker">Diferenciadores</div>
+      <h2 class="section-title">No es caja negra. No es simulación masiva.</h2>
+      <p class="section-copy">
+        ATOM-B opera sobre física discreta auditable, concentrándose en las regiones que realmente
+        participan en la función molecular.
+      </p>
+
+      <div class="comparison">
+        <table>
+          <thead>
+            <tr>
+              <th>Criterio</th>
+              <th>Dinámica Molecular</th>
+              <th>IA generativa</th>
+              <th>ATOM-B</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <tr>
+              <td>Velocidad</td>
+              <td>Baja / media</td>
+              <td>Alta</td>
+              <td class="highlight">Alta</td>
+            </tr>
+
+            <tr>
+              <td>Costo computacional</td>
+              <td>Alto</td>
+              <td>Medio</td>
+              <td class="highlight">Bajo / medio</td>
+            </tr>
+
+            <tr>
+              <td>Trazabilidad</td>
+              <td>Alta</td>
+              <td>Variable</td>
+              <td class="highlight">Alta</td>
+            </tr>
+
+            <tr>
+              <td>Dependencia de datos históricos</td>
+              <td>No</td>
+              <td>Sí</td>
+              <td class="highlight">No</td>
+            </tr>
+
+            <tr>
+              <td>Blancos poco estudiados</td>
+              <td>Limitado por costo</td>
+              <td>Limitado por datos</td>
+              <td class="highlight">Analizable por física</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- VALIDATION -->
+  <section class="validation">
+    <div class="container center">
+      <div class="section-kicker">Validación</div>
+      <h2 class="section-title">Predicciones verificables contra evidencia estructural</h2>
+      <p class="section-copy">
+        ATOM-B está diseñado para que cada resultado pueda contrastarse contra información estructural,
+        como coordenadas cristalográficas, cofactores reportados, moléculas de agua estructural y residuos funcionales.
+      </p>
+
+      <div class="validation-grid">
+        <article class="validation-card">
+          <h3>Cofactores catalíticos</h3>
+          <p>
+            Comparación entre centros farmacofóricos predichos y metales o cofactores observados experimentalmente.
+          </p>
+        </article>
+
+        <article class="validation-card">
+          <h3>Agua estructural</h3>
+          <p>
+            Identificación de regiones compatibles con moléculas de agua ordenada dentro de cavidades.
+          </p>
+        </article>
+
+        <article class="validation-card">
+          <h3>Trazabilidad por vóxel</h3>
+          <p>
+            Cada predicción puede rastrearse hasta confinamiento, electrostática y dirección de fuerza.
+          </p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ATLAS -->
+  <section id="atlas" class="atlas">
+    <div class="container">
+      <div class="atlas-hero">
+        <div class="atlas-visual">
+          <h2>El Atlas<br />Topológico<br />Universal</h2>
+        </div>
+
+        <div class="atlas-side">
+          <img src="assets/scientist-close.jpg" alt="Laboratorio" />
+          <img src="assets/protein.jpg" alt="Proteína molecular" />
+        </div>
+      </div>
+
+      <div class="atlas-text">
+        <h2>Más eficiente que la Dinámica Molecular</h2>
+
+        <div>
+          <p>
+            Mientras la Dinámica Molecular calcula el comportamiento de toda la proteína y su entorno,
+            ATOM-B se concentra únicamente en las regiones relevantes, reduciendo drásticamente el tiempo
+            y los recursos necesarios para el análisis.
+          </p>
+
+          <p>
+            Puede transformar estructuras proteicas en mapas funcionales indexables, permitiendo búsquedas,
+            comparaciones y priorización de regiones terapéuticas a escala.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- USE CASES -->
+  <section class="usecases">
+    <div class="container center">
+      <div class="section-kicker">Casos de uso</div>
+      <h2 class="section-title">Diseñado para equipos donde el error cuesta</h2>
+      <p class="section-copy">
+        ATOM-B está orientado a organizaciones que necesitan velocidad, rigor físico y trazabilidad en decisiones tempranas.
+      </p>
+
+      <div class="usecase-grid">
+        <article class="usecase-card">
+          <h3>Farmacéuticas</h3>
+          <p>Priorización temprana de blancos, sitios activos y oportunidades terapéuticas.</p>
+        </article>
+
+        <article class="usecase-card">
+          <h3>Biotech</h3>
+          <p>Exploración de proteínas poco estudiadas y validación estructural inicial.</p>
+        </article>
+
+        <article class="usecase-card">
+          <h3>Investigación</h3>
+          <p>Análisis físico de cavidades, cofactores, interfaces y regiones funcionales.</p>
+        </article>
+
+        <article class="usecase-card">
+          <h3>Partners tecnológicos</h3>
+          <p>Integración con pipelines de docking, visualización o descubrimiento computacional.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contacto" class="contact">
+    <div class="container contact-grid">
+      <div>
+        <h2>Diseñado para empresas que operan donde el error cuesta.</h2>
+        <p>
+          En ATOM-B eliminamos las cajas negras mediante una plataforma donde cada predicción
+          es auditable hasta el nivel de un vóxel. Si buscas rigurosidad científica, velocidad
+          y trazabilidad, solicita una demo.
+        </p>
+      </div>
+
+      <form class="form" onsubmit="handleSubmit(event)">
+        <div class="form-row">
+          <input type="text" name="name" placeholder="Nombre *" required />
+          <input type="text" name="company" placeholder="Empresa *" required />
+        </div>
+
+        <input type="email" name="email" placeholder="Email *" required />
+
+        <select name="interest" required>
+          <option value="">Interés *</option>
+          <option value="demo">Solicitar demo</option>
+          <option value="partnership">Partnership</option>
+          <option value="investment">Inversión</option>
+          <option value="research">Investigación</option>
+        </select>
+
+        <textarea name="message" placeholder="Mensaje"></textarea>
+
+        <button type="submit">Enviar</button>
+      </form>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="container footer-grid">
+      <div>
+        <div class="logo" style="font-size: 1.6rem; margin-bottom: 18px;">
+          <div class="logo-mark">A</div>
+          <span>AT<span>O</span>M-B</span>
+        </div>
+        <p>Puebla, México</p>
+        <p>+52 222 964 8206</p>
+      </div>
+
+      <div class="footer-links">
+        <a href="#inicio">Inicio</a>
+        <a href="#como-funciona">Cómo funciona</a>
+        <a href="#diferenciadores">En qué nos diferenciamos</a>
+        <a href="#contacto">Contacto</a>
+        <a href="privacy.html">Privacidad</a>
+      </div>
+
+      <div class="footer-copy">
+        <p>© 2026 ATOM-B. Todos los derechos reservados.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    (function () {
+      var toggle = document.getElementById("navToggle");
+      var menu = document.getElementById("mobileMenu");
+      var backdrop = document.getElementById("mobileBackdrop");
+      if (!toggle || !menu || !backdrop) return;
+
+      function setOpen(open) {
+        toggle.setAttribute("aria-expanded", open ? "true" : "false");
+        menu.hidden = !open;
+        backdrop.hidden = !open;
+        document.body.classList.toggle("menu-open", open);
+      }
+
+      toggle.addEventListener("click", function () {
+        setOpen(menu.hidden);
+      });
+
+      backdrop.addEventListener("click", function () {
+        setOpen(false);
+      });
+
+      menu.addEventListener("click", function (e) {
+        var link = e.target.closest("a");
+        if (!link) return;
+        setOpen(false);
+      });
+
+      document.addEventListener("keydown", function (e) {
+        if (e.key === "Escape") setOpen(false);
+      });
+
+      document.addEventListener("click", function (e) {
+        if (menu.hidden) return;
+        if (menu.contains(e.target)) return;
+        if (toggle.contains(e.target)) return;
+        setOpen(false);
+      });
+
+      window.addEventListener("resize", function () {
+        if (window.innerWidth > 1000) setOpen(false);
+      });
+    })();
+
+    (function () {
+      function initLang(switcherId, toggleId, menuId) {
+        var switcher = document.getElementById(switcherId);
+        var toggle = document.getElementById(toggleId);
+        var menu = document.getElementById(menuId);
+        if (!switcher || !toggle || !menu) return;
+
+        function close() {
+          menu.hidden = true;
+          switcher.classList.remove("open");
+          toggle.setAttribute("aria-expanded", "false");
+        }
+
+        function open() {
+          menu.hidden = false;
+          switcher.classList.add("open");
+          toggle.setAttribute("aria-expanded", "true");
+        }
+
+        toggle.addEventListener("click", function () {
+          if (menu.hidden) open();
+          else close();
+        });
+
+        document.addEventListener("click", function (e) {
+          if (!switcher.contains(e.target)) close();
+        });
+
+        document.addEventListener("keydown", function (e) {
+          if (e.key === "Escape") close();
+        });
+      }
+
+      initLang("langSwitcher", "langToggle", "langMenu");
+      initLang("langSwitcherMobile", "langToggleMobile", "langMenuMobile");
+    })();
+
+    function handleSubmit(event) {
+      event.preventDefault();
+
+      const form = event.target;
+      const data = new FormData(form);
+
+      const name = data.get("name");
+      const company = data.get("company");
+      const email = data.get("email");
+      const interest = data.get("interest");
+      const message = data.get("message");
+
+      const subject = encodeURIComponent("Solicitud de contacto ATOM-B");
+      const body = encodeURIComponent(
+        `Nombre: ${name}\nEmpresa: ${company}\nEmail: ${email}\nInterés: ${interest}\n\nMensaje:\n${message}`
+      );
+
+      window.location.href = `mailto:contacto@atom-b.com?subject=${subject}&body=${body}`;
+    }
+  </script>
+
+</body>
+</html>
