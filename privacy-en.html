@@ -192,47 +192,16 @@
       gap: 28px;
     }
 
-    .brand {
+    .logo {
       display: flex;
       align-items: center;
-      gap: 14px;
-      font-size: 30px;
-      font-weight: 900;
-      letter-spacing: 0.08em;
       color: #fff;
     }
 
-    .brand-mark {
-      width: 54px;
-      height: 54px;
-      border: 2px solid var(--accent);
-      border-radius: 16px;
-      display: grid;
-      place-items: center;
-      color: var(--accent);
-      font-weight: 900;
-      font-size: 24px;
-      box-shadow: 0 0 22px rgba(43, 217, 208, 0.22);
-      position: relative;
-    }
-
-    .brand-mark::before,
-    .brand-mark::after {
-      content: "";
-      position: absolute;
-      inset: 10px;
-      border: 1px solid rgba(27, 167, 216, 0.75);
-      border-radius: 50%;
-      transform: rotate(35deg);
-    }
-
-    .brand-mark::after {
-      transform: rotate(-35deg);
-      border-color: rgba(43, 217, 208, 0.8);
-    }
-
-    .brand .atom-o {
-      color: var(--accent);
+    .logo-img {
+      height: 44px;
+      width: auto;
+      display: block;
     }
 
     .nav-links {
@@ -255,17 +224,31 @@
       color: var(--accent);
     }
 
-    .nav-cta {
-      opacity: 1 !important;
-      border: 1px solid rgba(255, 255, 255, 0.28);
-      padding: 11px 18px;
-      color: #fff;
-      background: rgba(255, 255, 255, 0.08);
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 14px;
     }
 
-    .nav-cta:hover {
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid rgba(255, 255, 255, 0.28);
+      color: #fff;
+      height: 44px;
+      padding: 0 16px;
+      font-weight: 800;
+      font-size: 14px;
+      letter-spacing: 0.02em;
+      background: rgba(255, 255, 255, 0.08);
+      cursor: pointer;
+      transition: 0.25s ease;
+    }
+
+    .btn:hover {
       background: rgba(255, 255, 255, 0.16);
-      color: #fff !important;
+      color: #fff;
     }
 
     .lang-switcher {
@@ -713,14 +696,12 @@
         flex: 0 0 auto;
       }
 
-      .brand {
-        font-size: 22px;
+      .nav-actions {
+        display: none;
       }
 
-      .brand-mark {
-        width: 42px;
-        height: 42px;
-        border-radius: 13px;
+      .logo-img {
+        height: 36px;
       }
 
       section {
@@ -761,21 +742,23 @@
 <body>
   <header class="nav">
     <div class="container nav-inner">
-      <a class="brand" href="index-en.html">
-        <span class="brand-mark">A</span>
-        <span>AT<span class="atom-o">O</span>M-B</span>
+      <a class="logo" href="index-en.html" aria-label="ATOM-B">
+        <img class="logo-img" src="ATOM-B_1.png" alt="ATOM-B" />
       </a>
 
-      <nav class="nav-links">
+      <nav class="nav-links" id="navLinks">
         <a href="index-en.html">Home</a>
         <a href="index-en.html#como-funciona">How it works</a>
         <a href="index-en.html#diferenciadores">Differentiators</a>
         <a href="index-en.html#atlas">Atlas</a>
-        <a href="index-en.html#contacto" class="nav-cta">Contact</a>
         <a href="privacy-en.html">Privacy</a>
       </nav>
 
       <div class="nav-right">
+        <div class="nav-actions">
+          <a href="index-en.html#contacto" class="btn">Contact</a>
+        </div>
+
         <div class="lang-switcher" id="langSwitcher">
           <button class="lang" type="button" aria-label="Select language" aria-haspopup="true" aria-expanded="false" aria-controls="langMenu" id="langToggle">
             <span>EN</span>
@@ -827,11 +810,11 @@
       <div class="container">
         <div class="legal-hero-inner">
           <div class="legal-badge">Legal document</div>
-          <h1>Privacy Notice</h1>
+          <h1>Comprehensive Privacy Notice</h1>
           <p class="section-lead">
             This Privacy Notice is issued in compliance with the Federal Law on the Protection of Personal Data Held by Private Parties (Mexico).
           </p>
-          <p class="updated">Last updated: <span class="ph">[DATE DD/MM/YYYY]</span></p>
+          <p class="updated">Last updated: 30/06/2026</p>
         </div>
       </div>
     </section>
@@ -839,109 +822,115 @@
     <section class="legal-body">
       <div class="container legal-grid">
         <nav class="legal-toc" aria-label="Table of contents">
-          <strong>Contents</strong>
-          <a href="#responsable">1. Data controller</a>
-          <a href="#datos">2. Personal data collected</a>
-          <a href="#finalidades">3. Purposes of processing</a>
+          <a href="#responsable">1. Controller</a>
+          <a href="#datos">2. Personal data we collect</a>
+          <a href="#finalidades">3. Purposes</a>
           <a href="#consentimiento">4. Consent</a>
-          <a href="#transferencias">5. Data transfers</a>
+          <a href="#transferencias">5. Transfers</a>
           <a href="#arco">6. ARCO rights</a>
-          <a href="#limitar">7. Limit use or disclosure</a>
-          <a href="#cookies">8. Cookies and tracking</a>
+          <a href="#limitar">7. Limiting use or disclosure</a>
+          <a href="#cookies">8. Cookies and tracking technologies</a>
           <a href="#cambios">9. Changes to this notice</a>
-          <a href="#autoridad">10. Supervisory authority</a>
+          <a href="#autoridad">10. Data protection authority</a>
         </nav>
 
         <div class="legal-content">
           <section id="responsable">
-            <h2><span class="num">1.</span>Identity and address of the data controller</h2>
+            <h2><span class="num">1.</span>Identity and address of the controller</h2>
             <p>
-              The data controller responsible for the processing of your personal data is
-              <span class="ph">[LEGAL NAME OF CONTROLLER]</span>,
-              located at
-              <span class="ph">[FULL REGISTERED ADDRESS]</span>,
-              with contact email
-              <span class="ph">[EMAIL@DOMAIN]</span>
-              (the “Controller”).
+              The controller of your personal data is
+              Iván Erick Tlatecatl Morales,
+              with address
+              C. 2 Sur 308, La Santísima Trinidad, 72810 San Andrés Cholula, Pue.,
+              and contact email
+              info@atomb.com
+              (the "Controller").
             </p>
             <p>
-              The Controller is responsible for collecting, using and safeguarding the personal data you provide through this website,
-              in accordance with the principles set out in applicable law.
+              The Controller is responsible for collecting, using, and protecting the personal data you provide
+              through this website, in accordance with the principles of lawfulness, consent, information, quality,
+              purpose limitation, loyalty, proportionality, and accountability established by applicable law.
             </p>
           </section>
 
           <section id="datos">
             <h2><span class="num">2.</span>Personal data we collect</h2>
             <p>
-              Through this website’s contact form, we directly collect (via electronic means) only the following personal data:
+              Through this site's contact form, we collect directly and by electronic means only the following
+              personal data:
             </p>
             <ul>
               <li>Full name.</li>
               <li>Company or organization.</li>
               <li>Email address.</li>
-              <li>Any information you voluntarily include in the message field, as well as the selected interest type (NDA, licensing, acquisition, integration or technical inquiry).</li>
+              <li>Any information you voluntarily include in the message field, as well as the selected interest type (NDA, licensing, acquisition, integration, or technical conversation).</li>
             </ul>
             <p>
-              We do not collect sensitive personal data, nor financial or asset-related data through this site.
+              We do not collect sensitive personal data, nor financial or asset-related data, through this site.
             </p>
           </section>
 
           <section id="finalidades">
             <h2><span class="num">3.</span>Purposes of processing</h2>
             <h3>Primary purposes (necessary)</h3>
-            <p>Your data is used for the following purposes, which are necessary for our relationship with you:</p>
+            <p>Your data is used for the following purposes that give rise to and are necessary for our relationship with you:</p>
             <ul>
-              <li>To receive, follow up and respond to your request for information, NDA, licensing, acquisition or integration.</li>
-              <li>To contact you by electronic or telephone means to coordinate technical discussions, due diligence or IP transfer.</li>
+              <li>To handle, follow up on, and respond to your request for information, NDA, licensing, acquisition, or integration.</li>
+              <li>To contact you by electronic or telephone means to coordinate technical conversations, due diligence, or IP transfer discussions.</li>
               <li>To identify and qualify the requester as a potential counterparty or partner.</li>
-              <li>To comply with obligations derived from the relationship that may be established.</li>
+              <li>To comply with obligations arising from the relationship that may be established.</li>
             </ul>
             <h3>Secondary purposes (optional)</h3>
             <p>
-              Additionally, and only if you do not object, we may use your data for
-              <span class="ph">[DESCRIBE SECONDARY PURPOSE, E.G., SENDING INSTITUTIONAL UPDATES]</span>.
-              If you do not want your data processed for these purposes, you may object as described in section 7.
-              Your refusal will not be a reason to deny the requested services.
+              We currently do not use your personal data for secondary purposes, such as sending
+              institutional updates, newsletters, or promotional communications. If this changes
+              in the future, this notice will be updated accordingly. This does not affect the
+              primary purposes necessary to respond to your request.
             </p>
           </section>
 
           <section id="consentimiento">
             <h2><span class="num">4.</span>Consent</h2>
             <p>
-              By providing your personal data through this website’s form and submitting your request, you acknowledge that you have read this Privacy Notice
-              and consent to the processing of your data for the purposes described herein. Consent may be revoked at any time as described in section 6.
+              By providing your personal data through this site's form and sending your request, you acknowledge
+              that you have read this Privacy Notice and give your consent for the processing of your data in
+              accordance with the purposes described herein. Consent may be revoked at any time as described in
+              section 6.
             </p>
           </section>
 
           <section id="transferencias">
             <h2><span class="num">5.</span>Transfers of personal data</h2>
             <p>
-              The Controller will not transfer your personal data to third parties without your consent, except in cases permitted by law
-              (for example, where a transfer is required by law or necessary for the administration of justice, or made within the same corporate group under shared policies).
+              The Controller will not transfer your personal data to third parties without your consent, except in
+              the cases provided by law (for example, when a transfer is required by law, necessary for the
+              administration of justice, or carried out within the same corporate group under common policies).
             </p>
             <p>
-              If the Controller needs to transfer data to other third parties (for example
-              <span class="ph">[LEGAL COUNSEL, EMAIL/CRM PROVIDERS, IF ANY]</span>),
-              we will inform you and, when required by law, obtain your consent.
+              If the Controller needs to transfer data to third parties outside the cases above (for example
+              legal counsel or specialized service providers strictly necessary to process your
+              request), you will be informed and, when required by law, your consent will be obtained.
             </p>
           </section>
 
           <section id="arco">
             <h2><span class="num">6.</span>How to exercise ARCO rights and revoke consent</h2>
             <p>
-              You have the right to know what personal data we hold and how we use it (Access); to request correction when it is inaccurate or incomplete (Rectification);
-              to request deletion when you consider it is not being used in accordance with law (Cancellation); and to object to the use of your data for specific purposes (Opposition).
-              These are known as ARCO rights.
+              You have the right to know what personal data we hold, what we use it for, and the conditions of its
+              use (Access); to request correction when it is inaccurate or incomplete (Rectification); to request
+              deletion from our records when you consider it is not being used in accordance with the law
+              (Cancellation); and to object to the use of your data for specific purposes (Opposition). These are
+              known as ARCO rights.
             </p>
             <p>
-              To exercise any of these rights, or to revoke consent, please send a request to
-              <span class="ph">[EMAIL FOR ARCO REQUESTS]</span> including:
+              To exercise any of these rights, or to revoke your consent, send a request to
+              info@atomb.com indicating:
             </p>
             <ul>
-              <li>Your name and a means to communicate the response.</li>
-              <li>A document proving your identity (or legal representation, if applicable).</li>
-              <li>A clear and precise description of the right you wish to exercise or the specific request.</li>
-              <li>Any information that helps locate the relevant personal data.</li>
+              <li>Name of the data subject and a means to communicate the response.</li>
+              <li>Document proving identity (or legal representation, if applicable).</li>
+              <li>Clear and precise description of the right you wish to exercise or the specific request.</li>
+              <li>Any element that helps locate the personal data.</li>
             </ul>
             <p>
               The Controller will respond within the timeframes established by applicable law.
@@ -949,17 +938,18 @@
           </section>
 
           <section id="limitar">
-            <h2><span class="num">7.</span>How to limit use or disclosure</h2>
+            <h2><span class="num">7.</span>Limiting use or disclosure of data</h2>
             <p>
-              You may request the limitation of use or disclosure of your personal data by sending your request to
-              <span class="ph">[EMAIL FOR ARCO REQUESTS]</span>. Additionally, any communication you receive from us will include a mechanism to request that you stop receiving it.
+              You may request that we limit the use or disclosure of your personal data by sending your request to
+              info@atomb.com. Additionally, any communication you receive from us
+              will include a mechanism to request that you stop receiving it.
             </p>
           </section>
 
           <section id="cookies">
             <h2><span class="num">8.</span>Cookies and tracking technologies</h2>
             <p>
-              <span class="ph">[STATE WHETHER THE SITE USES COOKIES OR TRACKING. IF NOT, USE: "This site does not use cookies or tracking technologies that automatically collect personal data."]</span>
+              This site does not use cookies or tracking technologies that automatically collect personal data.
             </p>
           </section>
 
@@ -972,21 +962,18 @@
           </section>
 
           <section id="autoridad">
-            <h2><span class="num">10.</span>Supervisory authority</h2>
+            <h2><span class="num">10.</span>Data protection authority</h2>
             <p>
-              If you believe your right to personal data protection has been violated, you may contact the competent authority for the protection of personal data held by private parties in Mexico.
+              If you believe your right to personal data protection has been violated, you may contact the
+              competent authority in Mexico for the protection of personal data held by private parties.
             </p>
             <div class="legal-card">
               <h3>Questions about this notice?</h3>
               <p>
-                For any inquiries related to the processing of your personal data, please email us at
-                <a href="mailto:[EMAIL@DOMAIN]">[EMAIL@DOMAIN]</a>.
+                For any inquiry related to the processing of your personal data, email us at
+                <a href="mailto:info@atomb.com">info@atomb.com</a>.
               </p>
             </div>
-            <p class="legal-note">
-              Internal note (remove before publishing): the highlighted placeholders are mandatory and must be filled with real information.
-              This document is a structured template aligned with law; it is recommended that legal counsel review it before publishing, especially given confidentiality requirements under NDA.
-            </p>
           </section>
         </div>
       </div>

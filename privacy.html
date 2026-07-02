@@ -193,47 +193,16 @@
       gap: 28px;
     }
 
-    .brand {
+    .logo {
       display: flex;
       align-items: center;
-      gap: 14px;
-      font-size: 30px;
-      font-weight: 900;
-      letter-spacing: 0.08em;
       color: #fff;
     }
 
-    .brand-mark {
-      width: 54px;
-      height: 54px;
-      border: 2px solid var(--accent);
-      border-radius: 16px;
-      display: grid;
-      place-items: center;
-      color: var(--accent);
-      font-weight: 900;
-      font-size: 24px;
-      box-shadow: 0 0 22px rgba(43, 217, 208, 0.22);
-      position: relative;
-    }
-
-    .brand-mark::before,
-    .brand-mark::after {
-      content: "";
-      position: absolute;
-      inset: 10px;
-      border: 1px solid rgba(27, 167, 216, 0.75);
-      border-radius: 50%;
-      transform: rotate(35deg);
-    }
-
-    .brand-mark::after {
-      transform: rotate(-35deg);
-      border-color: rgba(43, 217, 208, 0.8);
-    }
-
-    .brand .atom-o {
-      color: var(--accent);
+    .logo-img {
+      height: 44px;
+      width: auto;
+      display: block;
     }
 
     .nav-links {
@@ -256,17 +225,31 @@
       color: var(--accent);
     }
 
-    .nav-cta {
-      opacity: 1 !important;
-      border: 1px solid rgba(255, 255, 255, 0.28);
-      padding: 11px 18px;
-      color: #fff;
-      background: rgba(255, 255, 255, 0.08);
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 14px;
     }
 
-    .nav-cta:hover {
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid rgba(255, 255, 255, 0.28);
+      color: #fff;
+      height: 44px;
+      padding: 0 16px;
+      font-weight: 800;
+      font-size: 14px;
+      letter-spacing: 0.02em;
+      background: rgba(255, 255, 255, 0.08);
+      cursor: pointer;
+      transition: 0.25s ease;
+    }
+
+    .btn:hover {
       background: rgba(255, 255, 255, 0.16);
-      color: #fff !important;
+      color: #fff;
     }
 
     .lang-switcher {
@@ -715,14 +698,12 @@
         flex: 0 0 auto;
       }
 
-      .brand {
-        font-size: 22px;
+      .nav-actions {
+        display: none;
       }
 
-      .brand-mark {
-        width: 42px;
-        height: 42px;
-        border-radius: 13px;
+      .logo-img {
+        height: 36px;
       }
 
       section {
@@ -764,21 +745,23 @@
 
   <header class="nav">
     <div class="container nav-inner">
-      <a class="brand" href="index.html">
-        <span class="brand-mark">A</span>
-        <span>AT<span class="atom-o">O</span>M-B</span>
+      <a class="logo" href="index.html" aria-label="ATOM-B">
+        <img class="logo-img" src="ATOM-B_1.png" alt="ATOM-B" />
       </a>
 
-      <nav class="nav-links">
+      <nav class="nav-links" id="navLinks">
         <a href="index.html">Inicio</a>
         <a href="index.html#como-funciona">Cómo funciona</a>
         <a href="index.html#diferenciadores">Diferenciadores</a>
         <a href="index.html#atlas">Atlas</a>
-        <a href="index.html#contacto" class="nav-cta">Contactar</a>
         <a href="privacy.html">Privacidad</a>
       </nav>
 
       <div class="nav-right">
+        <div class="nav-actions">
+          <a href="index.html#contacto" class="btn">Contactar</a>
+        </div>
+
         <div class="lang-switcher" id="langSwitcher">
           <button class="lang" type="button" aria-label="Seleccionar idioma" aria-haspopup="true" aria-expanded="false" aria-controls="langMenu" id="langToggle">
             <span>ES</span>
@@ -836,7 +819,7 @@
             Este Aviso de Privacidad se emite en cumplimiento de la Ley Federal de Protección de Datos
             Personales en Posesión de los Particulares vigente en los Estados Unidos Mexicanos.
           </p>
-          <p class="updated">Última actualización: <span class="ph">[FECHA DD/MM/AAAA]</span></p>
+          <p class="updated">Última actualización: 30/06/2026</p>
         </div>
       </div>
     </section>
@@ -867,11 +850,11 @@
             <h2><span class="num">1.</span>Identidad y domicilio del responsable</h2>
             <p>
               El responsable del tratamiento de sus datos personales es
-              <span class="ph">[NOMBRE O RAZÓN SOCIAL DEL RESPONSABLE]</span>,
+              Iván Erick Tlatecatl Morales,
               con domicilio en
-              <span class="ph">[DOMICILIO FISCAL O LEGAL COMPLETO]</span>,
+              C. 2 Sur 308, La Santísima Trinidad, 72810 San Andrés Cholula, Pue.,
               y correo electrónico de contacto
-              <span class="ph">[CORREO@DOMINIO]</span>
+              info@atomb.com
               (en adelante, "el Responsable").
             </p>
             <p>
@@ -911,10 +894,9 @@
             </ul>
             <h3>Finalidades secundarias (opcionales)</h3>
             <p>
-              De manera adicional, y solo si usted no manifiesta su oposición, podríamos utilizar sus datos para
-              <span class="ph">[DESCRIBIR FINALIDAD SECUNDARIA, EJ. ENVÍO DE INFORMACIÓN INSTITUCIONAL]</span>.
-              Si no desea que sus datos se traten para estas finalidades, puede manifestarlo conforme a la
-              sección 7 de este aviso. Su negativa no será motivo para negarle los servicios solicitados.
+              Actualmente no utilizamos sus datos personales para finalidades secundarias, como envío de
+              información institucional, publicidad o boletines. En caso de que esto cambie en el futuro,
+              se le informará oportunamente y podrá manifestar su oposición conforme a la sección 7 de este aviso.
             </p>
           </section>
 
@@ -938,7 +920,7 @@
             </p>
             <p>
               En caso de que el Responsable requiera transferir datos a terceros distintos de los anteriores
-              (por ejemplo <span class="ph">[ASESORES LEGALES, PROVEEDORES DE CORREO O CRM, EN SU CASO]</span>),
+              (actualmente no se comparten con terceros),
               se lo informará y, cuando la ley lo exija, recabará su consentimiento.
             </p>
           </section>
@@ -954,7 +936,7 @@
             </p>
             <p>
               Para ejercer cualquiera de estos derechos, o para revocar su consentimiento, envíe una solicitud al
-              correo <span class="ph">[CORREO PARA SOLICITUDES ARCO]</span> indicando:
+              correo info@atomb.com indicando:
             </p>
             <ul>
               <li>Nombre del titular y medio para comunicarle la respuesta.</li>
@@ -971,7 +953,7 @@
             <h2><span class="num">7.</span>Medios para limitar el uso o divulgación de sus datos</h2>
             <p>
               Puede solicitar la limitación del uso o divulgación de sus datos personales enviando su petición al
-              correo <span class="ph">[CORREO PARA SOLICITUDES ARCO]</span>. Asimismo, en cualquier comunicación
+              correo info@atomb.com. Asimismo, en cualquier comunicación
               que reciba de nuestra parte se incluirá un mecanismo para que pueda solicitar dejar de recibirla.
             </p>
           </section>
@@ -979,7 +961,7 @@
           <section id="cookies">
             <h2><span class="num">8.</span>Uso de cookies y tecnologías de rastreo</h2>
             <p>
-              <span class="ph">[INDICAR SI EL SITIO UTILIZA COOKIES O TECNOLOGÍAS DE RASTREO. SI NO LAS UTILIZA, DEJAR: "Este sitio no utiliza cookies ni tecnologías de rastreo que recaben datos personales de forma automática."]</span>
+              Este sitio no utiliza cookies ni tecnologías de rastreo que recaben datos personales de forma automática.
             </p>
           </section>
 
@@ -1004,15 +986,9 @@
               <h3>¿Dudas sobre este aviso?</h3>
               <p>
                 Para cualquier consulta relacionada con el tratamiento de sus datos personales, escríbanos a
-                <a href="mailto:[CORREO@DOMINIO]">[CORREO@DOMINIO]</a>.
+                <a href="mailto:info@atomb.com">info@atomb.com</a>.
               </p>
             </div>
-            <p class="legal-note">
-              Nota para el equipo (eliminar antes de publicar): los campos marcados en amarillo son obligatorios
-              y deben completarse con datos reales. Este documento es una base estructurada conforme a la ley;
-              se recomienda que un abogado lo revise antes de publicarlo, especialmente al tratarse de un sitio
-              que maneja información confidencial bajo NDA.
-            </p>
           </section>
 
         </div>
