@@ -1790,17 +1790,26 @@
         var sections = Array.prototype.slice.call(document.querySelectorAll("main[id], section[id]"));
         if (!sections.length) return "";
 
-        var hashId = window.location.hash.replace(/^#/, "");
-        if (hashId && document.getElementById(hashId)) return hashId;
+        var marker = window.innerHeight * 0.35;
+        var fallbackId = sections[0].id || "";
+        var fallbackDistance = Number.POSITIVE_INFINITY;
 
-        var marker = window.scrollY + Math.max(140, window.innerHeight * 0.3);
-        var currentId = "";
+        for (var i = 0; i < sections.length; i += 1) {
+          var section = sections[i];
+          var rect = section.getBoundingClientRect();
 
-        sections.forEach(function (section) {
-          if (section.offsetTop <= marker) currentId = section.id;
-        });
+          if (rect.top <= marker && rect.bottom >= marker) {
+            return section.id;
+          }
 
-        return currentId || sections[0].id || "";
+          var distance = Math.abs(rect.top - marker);
+          if (distance < fallbackDistance) {
+            fallbackDistance = distance;
+            fallbackId = section.id;
+          }
+        }
+
+        return fallbackId;
       }
 
       function initLang(switcherId, toggleId, menuId) {
