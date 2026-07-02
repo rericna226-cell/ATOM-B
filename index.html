@@ -856,7 +856,7 @@
       align-items: start;
     }
 
-    .contact h2 {
+    .contact-copy h2 {
       color: var(--dark);
       font-size: clamp(3rem, 6vw, 5rem);
       line-height: 0.98;
@@ -864,62 +864,131 @@
       margin-bottom: 28px;
     }
 
-    .contact p {
+    .contact-copy p {
       font-size: 1.08rem;
       color: #252b32;
       max-width: 520px;
     }
 
-    .form {
+    .cta-form-card {
+      background: var(--mint);
+      color: #07101d;
+      padding: 42px;
+      text-align: left;
+      border: 1px solid rgba(7, 53, 79, 0.08);
+      box-shadow: var(--shadow);
+    }
+
+    .cta-form-card h2 {
+      color: var(--dark);
+      font-size: clamp(2rem, 3.4vw, 3.4rem);
+      line-height: 1;
+      letter-spacing: -0.05em;
+      margin-bottom: 16px;
+    }
+
+    .cta-form-card p {
+      color: #34424c;
+      max-width: none;
+    }
+
+    .contact-form {
+      margin-top: 26px;
       display: grid;
-      gap: 24px;
+      gap: 14px;
     }
 
     .form-row {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 24px;
+      gap: 14px;
     }
 
-    .form input,
-    .form textarea,
-    .form select {
+    .field {
+      display: grid;
+      gap: 8px;
+      text-align: left;
+    }
+
+    .field label {
+      font-size: 13px;
+      font-weight: 800;
+      color: #07101d;
+      letter-spacing: 0.02em;
+    }
+
+    .field input,
+    .field textarea,
+    .field select {
       width: 100%;
-      border: none;
-      border-bottom: 1px solid #aab5bd;
-      padding: 16px 0;
-      font-size: 1rem;
+      border-radius: 16px;
+      border: 1px solid rgba(7, 53, 79, 0.14);
+      background: rgba(255, 255, 255, 0.9);
+      color: #07101d;
+      padding: 14px;
+      font-size: 15px;
       font-family: inherit;
       outline: none;
-      background: transparent;
+      transition: border-color 0.15s ease, box-shadow 0.15s ease;
     }
 
-    .form textarea {
-      min-height: 120px;
+    .field textarea {
+      min-height: 130px;
       resize: vertical;
     }
 
-    .form button {
-      justify-self: start;
-      background: #2b2533;
-      color: white;
-      border: 0;
-      padding: 16px 48px;
-      font-size: 1rem;
-      cursor: pointer;
-      transition: 0.25s ease;
+    .field input:focus,
+    .field textarea:focus,
+    .field select:focus {
+      border-color: rgba(13, 95, 143, 0.45);
+      box-shadow: 0 0 0 4px rgba(13, 95, 143, 0.08);
     }
 
-    .form button:hover {
+    .privacy {
+      display: flex;
+      gap: 10px;
+      align-items: flex-start;
+      color: #34424c;
+      font-size: 13px;
+      line-height: 1.5;
+      margin-top: 4px;
+    }
+
+    .privacy input {
+      margin-top: 4px;
+    }
+
+    .privacy a {
+      text-decoration: underline;
+      text-underline-offset: 3px;
+      font-weight: 800;
+    }
+
+    .submit {
+      margin-top: 8px;
+      min-height: 52px;
+      border: none;
+      border-radius: 999px;
       background: var(--dark);
+      color: #edf6ff;
+      font-family: inherit;
+      font-weight: 900;
+      font-size: 15px;
+      cursor: pointer;
+      transition: 0.2s ease;
+    }
+
+    .submit:hover {
+      transform: translateY(-2px);
+      background: var(--blue);
     }
 
     /* FOOTER */
 
     footer {
-      border-top: 1px solid #aab5bd;
+      border-top: 1px solid rgba(220, 239, 240, 0.14);
       padding: 48px 0;
-      background: white;
+      background: #07354f;
     }
 
     .footer-grid {
@@ -927,8 +996,18 @@
       grid-template-columns: 1fr 1fr 1fr;
       gap: 40px;
       align-items: start;
-      color: #59606a;
+      color: rgba(255, 255, 255, 0.9);
       font-size: 0.95rem;
+    }
+
+    .footer-brand {
+      margin-bottom: 18px;
+    }
+
+    .footer-logo-img {
+      height: 44px;
+      width: auto;
+      display: block;
     }
 
     .footer-links {
@@ -938,6 +1017,7 @@
 
     .footer-links a {
       text-decoration: underline;
+      text-decoration-color: rgba(255, 255, 255, 0.32);
     }
 
     .footer-copy {
@@ -1551,7 +1631,7 @@
   <!-- CONTACT -->
   <section id="contacto" class="contact">
     <div class="container contact-grid">
-      <div>
+      <div class="contact-copy">
         <h2>Diseñado para empresas que operan donde el error cuesta.</h2>
         <p>
           En ATOM-B eliminamos las cajas negras mediante una plataforma donde cada predicción
@@ -1560,26 +1640,90 @@
         </p>
       </div>
 
-      <form class="form" onsubmit="handleSubmit(event)">
-        <div class="form-row">
-          <input type="text" name="name" placeholder="Nombre *" required />
-          <input type="text" name="company" placeholder="Empresa *" required />
-        </div>
+      <div class="cta-form-card">
+        <h2>Evaluación técnica</h2>
+        <p>
+          Comparte la información básica del proyecto. El equipo revisará el caso y definirá
+          la mejor ruta de evaluación para ATOM-B.
+        </p>
 
-        <input type="email" name="email" placeholder="Email *" required />
+        <form class="contact-form" onsubmit="handleSubmit(event)">
+          <div class="form-row">
+            <div class="field">
+              <label for="name">Nombre completo</label>
+              <input id="name" name="name" type="text" placeholder="Nombre y apellido" required />
+            </div>
 
-        <select name="interest" required>
-          <option value="">Interés *</option>
-          <option value="demo">Solicitar demo</option>
-          <option value="partnership">Partnership</option>
-          <option value="investment">Inversión</option>
-          <option value="research">Investigación</option>
-        </select>
+            <div class="field">
+              <label for="company">Empresa / institución</label>
+              <input id="company" name="company" type="text" placeholder="Nombre de la empresa" required />
+            </div>
+          </div>
 
-        <textarea name="message" placeholder="Mensaje"></textarea>
+          <div class="form-row">
+            <div class="field">
+              <label for="email">Correo electrónico</label>
+              <input id="email" name="email" type="email" placeholder="correo@empresa.com" required />
+            </div>
 
-        <button type="submit">Enviar</button>
-      </form>
+            <div class="field">
+              <label for="phone">Teléfono</label>
+              <input id="phone" name="phone" type="tel" placeholder="+52 ___ ___ ____" />
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="field">
+              <label for="sector">Sector</label>
+              <select id="sector" name="sector" required>
+                <option value="">Selecciona un sector</option>
+                <option>Farmacéutica</option>
+                <option>Biotech</option>
+                <option>Investigación / laboratorio / academia</option>
+                <option>CRO / servicios de descubrimiento</option>
+                <option>Inversión / venture capital</option>
+                <option>Partner tecnológico</option>
+                <option>Otro</option>
+              </select>
+            </div>
+
+            <div class="field">
+              <label for="interest">Interés</label>
+              <select id="interest" name="interest" required>
+                <option value="">Selecciona tu interés</option>
+                <option>Evaluación técnica</option>
+                <option>Solicitar demo</option>
+                <option>Validación de target</option>
+                <option>Druggability / cavidades</option>
+                <option>Sitios alostéricos</option>
+                <option>Partnership / inversión</option>
+                <option>Documentación técnica bajo NDA</option>
+                <option>Otro</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="field">
+            <label for="message">Mensaje</label>
+            <textarea
+              id="message"
+              name="message"
+              placeholder="Comparte tu caso de uso, proteína objetivo, etapa del proceso o el tipo de evaluación técnica que necesitas."
+              required
+            ></textarea>
+          </div>
+
+          <label class="privacy">
+            <input type="checkbox" name="privacy" required />
+            <span>
+              He leído y acepto el <a href="privacy.html">aviso de privacidad</a> y autorizo
+              el tratamiento de mis datos personales conforme a la LFPDPPP.
+            </span>
+          </label>
+
+          <button class="submit" type="submit">Solicitar evaluación técnica</button>
+        </form>
+      </div>
     </div>
   </section>
 
@@ -1587,9 +1731,8 @@
   <footer>
     <div class="container footer-grid">
       <div>
-        <div class="logo" style="font-size: 1.6rem; margin-bottom: 18px;">
-          <div class="logo-mark">A</div>
-          <span>AT<span>O</span>M-B</span>
+        <div class="footer-brand">
+          <img class="footer-logo-img" src="ATOM-B_1.png" alt="ATOM-B" />
         </div>
         <p>Puebla, México</p>
         <p>+52 222 964 8206</p>
@@ -1699,12 +1842,14 @@
       const name = data.get("name");
       const company = data.get("company");
       const email = data.get("email");
+      const phone = data.get("phone");
+      const sector = data.get("sector");
       const interest = data.get("interest");
       const message = data.get("message");
 
       const subject = encodeURIComponent("Solicitud de contacto ATOM-B");
       const body = encodeURIComponent(
-        `Nombre: ${name}\nEmpresa: ${company}\nEmail: ${email}\nInterés: ${interest}\n\nMensaje:\n${message}`
+        `Nombre: ${name}\nEmpresa / institución: ${company}\nCorreo electrónico: ${email}\nTeléfono: ${phone}\nSector: ${sector}\nInterés: ${interest}\n\nMensaje:\n${message}`
       );
 
       window.location.href = `mailto:contacto@atom-b.com?subject=${subject}&body=${body}`;
