@@ -856,93 +856,60 @@
       max-width: none;
     }
 
-    .contact-form {
+    .technical-contact {
       margin-top: 26px;
       display: grid;
-      gap: 14px;
+      gap: 22px;
     }
 
-    .form-row {
+    .technical-contact p {
+      color: #34424c;
+      max-width: none;
+    }
+
+    .contact-details {
       display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 14px;
+      gap: 12px;
+      padding: 20px 22px;
+      border-radius: 22px;
+      background: rgba(255, 255, 255, 0.72);
+      border: 1px solid rgba(7, 53, 79, 0.1);
     }
 
-    .field {
+    .contact-details p {
+      margin: 0;
+    }
+
+    .contact-details ul {
+      margin: 0;
+      padding-left: 20px;
       display: grid;
       gap: 8px;
-      text-align: left;
-    }
-
-    .field label {
-      font-size: 13px;
-      font-weight: 800;
       color: #07101d;
-      letter-spacing: 0.02em;
     }
 
-    .field input,
-    .field textarea,
-    .field select {
-      width: 100%;
-      border-radius: 16px;
-      border: 1px solid rgba(7, 53, 79, 0.14);
-      background: rgba(255, 255, 255, 0.9);
-      color: #07101d;
-      padding: 14px;
-      font-size: 15px;
-      font-family: inherit;
-      outline: none;
-      transition: border-color 0.15s ease, box-shadow 0.15s ease;
-    }
-
-    .field textarea {
-      min-height: 130px;
-      resize: vertical;
-    }
-
-    .field input:focus,
-    .field textarea:focus,
-    .field select:focus {
-      border-color: rgba(13, 95, 143, 0.45);
-      box-shadow: 0 0 0 4px rgba(13, 95, 143, 0.08);
-    }
-
-    .privacy {
-      display: flex;
-      gap: 10px;
-      align-items: flex-start;
-      color: #34424c;
-      font-size: 13px;
-      line-height: 1.5;
-      margin-top: 4px;
-    }
-
-    .privacy input {
-      margin-top: 4px;
-    }
-
-    .privacy a {
+    .contact-details a {
       text-decoration: underline;
       text-underline-offset: 3px;
       font-weight: 800;
     }
 
-    .submit {
-      margin-top: 8px;
-      min-height: 52px;
-      border: none;
+    .contact-button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 54px;
+      padding: 0 28px;
       border-radius: 999px;
       background: var(--dark);
       color: #edf6ff;
-      font-family: inherit;
       font-weight: 900;
       font-size: 15px;
-      cursor: pointer;
+      text-decoration: none;
       transition: 0.2s ease;
     }
 
-    .submit:hover {
+    .contact-button:hover {
       transform: translateY(-2px);
       background: var(--blue);
     }
@@ -1075,10 +1042,6 @@
         grid-template-columns: 1fr;
       }
 
-      .form-row {
-        grid-template-columns: 1fr;
-      }
-
       .footer-grid {
         grid-template-columns: 1fr;
       }
@@ -1111,7 +1074,7 @@
 
       <div class="nav-right">
         <div class="nav-actions">
-          <a href="#contact" class="btn">Contact</a>
+          <a href="#contacto" class="btn">Contact</a>
         </div>
 
         <div class="lang-switcher" id="langSwitcher">
@@ -1565,86 +1528,36 @@
       <div class="cta-form-card">
         <h2>Technical evaluation</h2>
         <p>
-          Share the basic information about your project. The team reviews the case and defines
-          the best evaluation route for ATOM-B.
+          Briefly share your use case with our team. We will review the information and typically respond
+          within 24 to 48 business hours.
         </p>
 
-        <form class="contact-form" onsubmit="handleSubmit(event)">
-          <div class="form-row">
-            <div class="field">
-              <label for="name">Full name</label>
-              <input id="name" name="name" type="text" placeholder="First and last name" required />
-            </div>
+        <section class="technical-contact" aria-label="Technical contact card">
+          <div class="contact-details">
+            <p><strong>Please include in your message:</strong></p>
 
-            <div class="field">
-              <label for="company">Company / institution</label>
-              <input id="company" name="company" type="text" placeholder="Company name" required />
-            </div>
+            <ul>
+              <li>Name and company</li>
+              <li>Sector</li>
+              <li>Use case</li>
+              <li>Evaluation objective</li>
+              <li>Contact phone number, if applicable</li>
+            </ul>
+
+            <p>
+              <strong>Email:</strong>
+              <a href="mailto:contacto@atom-b.com">contacto@atom-b.com</a>
+            </p>
           </div>
 
-          <div class="form-row">
-            <div class="field">
-              <label for="email">Email</label>
-              <input id="email" name="email" type="email" placeholder="email@company.com" required />
-            </div>
-
-            <div class="field">
-              <label for="phone">Phone</label>
-              <input id="phone" name="phone" type="tel" placeholder="+1 ___ ___ ____" />
-            </div>
-          </div>
-
-          <div class="form-row">
-            <div class="field">
-              <label for="sector">Sector</label>
-              <select id="sector" name="sector" required>
-                <option value="">Select a sector</option>
-                <option>Pharma</option>
-                <option>Biotech</option>
-                <option>Research / laboratory / academia</option>
-                <option>CRO / discovery services</option>
-                <option>Investment / venture capital</option>
-                <option>Technology partner</option>
-                <option>Other</option>
-              </select>
-            </div>
-
-            <div class="field">
-              <label for="interest">Interest</label>
-              <select id="interest" name="interest" required>
-                <option value="">Select your interest</option>
-                <option>Technical evaluation</option>
-                <option>Request demo</option>
-                <option>Target validation</option>
-                <option>Druggability / cavities</option>
-                <option>Allosteric sites</option>
-                <option>Partnership / investment</option>
-                <option>Technical documentation under NDA</option>
-                <option>Other</option>
-              </select>
-            </div>
-          </div>
-
-          <div class="field">
-            <label for="message">Message</label>
-            <textarea
-              id="message"
-              name="message"
-              placeholder="Share your use case, target protein, process stage, or the type of technical evaluation you need."
-              required
-            ></textarea>
-          </div>
-
-          <label class="privacy">
-            <input type="checkbox" name="privacy" required />
-            <span>
-              I have read and accept the <a href="privacy-en.html">privacy notice</a> and authorize
-              the processing of my personal data in accordance with the applicable regulations.
-            </span>
-          </label>
-
-          <button class="submit" type="submit">Request technical evaluation</button>
-        </form>
+          <a
+            class="contact-button"
+            href="mailto:contacto@atom-b.com"
+            onclick="openTechnicalEmail(event)"
+          >
+            Request technical evaluation
+          </a>
+        </section>
       </div>
     </div>
   </section>
@@ -1792,26 +1705,15 @@
       initLang("langSwitcherMobile", "langToggleMobile", "langMenuMobile");
     })();
 
-    function handleSubmit(event) {
-      event.preventDefault();
+    function openTechnicalEmail(event) {
+      if (event) event.preventDefault();
 
-      const form = event.target;
-      const data = new FormData(form);
-
-      const name = data.get("name");
-      const company = data.get("company");
-      const email = data.get("email");
-      const phone = data.get("phone");
-      const sector = data.get("sector");
-      const interest = data.get("interest");
-      const message = data.get("message");
-
-      const subject = encodeURIComponent("ATOM-B contact request");
-      const body = encodeURIComponent(
-        `Name: ${name}\nCompany / institution: ${company}\nEmail: ${email}\nPhone: ${phone}\nSector: ${sector}\nInterest: ${interest}\n\nMessage:\n${message}`
+      var subject = encodeURIComponent("Technical evaluation request - ATOM-B");
+      var body = encodeURIComponent(
+        "Name:\r\nCompany:\r\nSector:\r\nPhone:\r\n\r\nUse case:\r\n\r\nEvaluation objective:\r\n"
       );
 
-      window.location.href = `mailto:contacto@atom-b.com?subject=${subject}&body=${body}`;
+      window.location.href = "mailto:contacto@atom-b.com?subject=" + subject + "&body=" + body;
     }
   </script>
 </body>
