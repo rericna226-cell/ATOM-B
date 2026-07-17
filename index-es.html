@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -9,7 +9,7 @@
   <link rel="manifest" href="/site.webmanifest" />
   <link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png" />
   <meta name="theme-color" content="#ffffff" />
-  <title>ATOM-B | Deterministic physics for drug discovery</title>
+  <title>ATOM-B | Física determinista para descubrimiento de fármacos</title>
 
   <style>
     :root {
@@ -62,6 +62,8 @@
       width: min(100% - 48px, var(--max));
       margin: 0 auto;
     }
+
+    /* NAV */
 
     .navbar {
       position: sticky;
@@ -336,6 +338,8 @@
       gap: 8px;
     }
 
+    /* HERO */
+
     .hero {
       min-height: calc(100vh - 92px);
       display: flex;
@@ -403,6 +407,8 @@
       flex-wrap: wrap;
     }
 
+    /* SECTIONS */
+
     section {
       padding: 110px 0;
     }
@@ -447,6 +453,8 @@
       margin: 0 auto 64px;
     }
 
+    /* PROBLEM */
+
     .problem {
       background: white;
     }
@@ -476,6 +484,8 @@
       color: #21313b;
       font-size: 1.03rem;
     }
+
+    /* PROPOSAL */
 
     .proposal {
       background: #fbfbfb;
@@ -519,6 +529,8 @@
     .value-card p {
       color: #34424c;
     }
+
+    /* HOW */
 
     .how {
       background: white;
@@ -575,9 +587,13 @@
       color: var(--muted);
     }
 
+    /* VOXEL */
+
     .voxel {
       background: #f7f9fa;
     }
+
+    /* OUTPUTS */
 
     .outputs {
       background: white;
@@ -608,6 +624,8 @@
       font-size: 0.95rem;
     }
 
+    /* CAPABILITIES */
+
     .capabilities {
       background: var(--mint);
     }
@@ -635,6 +653,8 @@
     .cap-card p {
       color: #34424c;
     }
+
+    /* DIFFERENCE */
 
     .difference {
       background: white;
@@ -676,6 +696,8 @@
       background: #effafa;
     }
 
+    /* VALIDATION */
+
     .validation {
       background:
         linear-gradient(rgba(7, 53, 79, 0.84), rgba(7, 53, 79, 0.84)),
@@ -711,6 +733,8 @@
     .validation-card p {
       color: rgba(255, 255, 255, 0.86);
     }
+
+    /* ATLAS */
 
     .atlas {
       background: white;
@@ -782,6 +806,8 @@
       font-weight: 500;
     }
 
+    /* USE CASES */
+
     .usecases {
       background: #f7f9fa;
     }
@@ -808,6 +834,8 @@
       color: var(--muted);
       font-size: 0.96rem;
     }
+
+    /* CONTACT */
 
     .contact {
       background: white;
@@ -927,6 +955,8 @@
       text-underline-offset: 3px;
     }
 
+    /* FOOTER */
+
     footer {
       border-top: 1px solid rgba(220, 239, 240, 0.14);
       padding: 48px 0;
@@ -965,6 +995,8 @@
     .footer-copy {
       text-align: right;
     }
+
+    /* RESPONSIVE */
 
     @media (max-width: 1000px) {
       .nav-links,
@@ -1071,6 +1103,8 @@
 </head>
 
 <body>
+
+  <!-- NAV -->
   <header class="navbar">
     <div class="container nav-inner">
       <a href="#inicio" class="logo" aria-label="ATOM-B">
@@ -1078,34 +1112,34 @@
       </a>
 
       <nav class="nav-links" id="navLinks">
-        <a href="#inicio">Home</a>
-        <a href="#como-funciona">How it works</a>
-        <a href="#diferenciadores">Differentiators</a>
+        <a href="#inicio">Inicio</a>
+        <a href="#como-funciona">Cómo funciona</a>
+        <a href="#diferenciadores">En qué nos diferenciamos</a>
         <a href="#atlas">Atlas</a>
-        <a href="privacy-en.html">Privacy</a>
+        <a href="privacy.html">Privacidad</a>
       </nav>
 
       <div class="nav-right">
         <div class="nav-actions">
-          <a href="#contacto" class="btn">Contact</a>
+          <a href="#contacto" class="btn">Contactar</a>
         </div>
 
         <div class="lang-switcher" id="langSwitcher">
-          <button class="lang" type="button" aria-label="Select language" aria-haspopup="true" aria-expanded="false" aria-controls="langMenu" id="langToggle">
-            <span>EN</span>
+          <button class="lang" type="button" aria-label="Seleccionar idioma" aria-haspopup="true" aria-expanded="false" aria-controls="langMenu" id="langToggle">
+            <span>ES</span>
             <span class="lang-caret" aria-hidden="true">⌄</span>
           </button>
           <div class="lang-menu" id="langMenu" hidden>
-            <a href="index.html">
+            <a href="index-es.html" class="active">
               <span>Español</span>
             </a>
-            <a href="index-en.html" class="active">
+            <a href="index.html">
               <span>English</span>
             </a>
           </div>
         </div>
 
-        <button class="nav-toggle" id="navToggle" type="button" aria-label="Open menu" aria-controls="mobileMenu" aria-expanded="false">
+        <button class="nav-toggle" id="navToggle" type="button" aria-label="Abrir menú" aria-controls="mobileMenu" aria-expanded="false">
           <span></span><span></span><span></span>
         </button>
       </div>
@@ -1114,138 +1148,147 @@
 
   <div class="mobile-backdrop" id="mobileBackdrop" hidden></div>
   <div class="mobile-menu" id="mobileMenu" hidden>
-    <a href="#inicio">Home</a>
-    <a href="#como-funciona">How it works</a>
-    <a href="#diferenciadores">Differentiators</a>
+    <a href="#inicio">Inicio</a>
+    <a href="#como-funciona">Cómo funciona</a>
+    <a href="#diferenciadores">En qué nos diferenciamos</a>
     <a href="#atlas">Atlas</a>
-    <a href="#contacto" class="mobile-cta">Contact</a>
-    <a href="privacy-en.html">Privacy</a>
+    <a href="#contacto" class="mobile-cta">Contactar</a>
+    <a href="privacy.html">Privacidad</a>
     <div class="lang-switcher mobile" id="langSwitcherMobile">
-      <button class="lang" type="button" aria-label="Select language" aria-haspopup="true" aria-expanded="false" aria-controls="langMenuMobile" id="langToggleMobile">
-        <span>EN</span>
+      <button class="lang" type="button" aria-label="Seleccionar idioma" aria-haspopup="true" aria-expanded="false" aria-controls="langMenuMobile" id="langToggleMobile">
+        <span>ES</span>
         <span class="lang-caret" aria-hidden="true">⌄</span>
       </button>
       <div class="lang-menu" id="langMenuMobile" hidden>
-        <a href="index.html">
+        <a href="index-es.html" class="active">
           <span>Español</span>
         </a>
-        <a href="index-en.html" class="active">
+        <a href="index.html">
           <span>English</span>
         </a>
       </div>
     </div>
   </div>
 
+  <!-- HERO -->
   <main id="inicio" class="hero">
     <div class="container">
       <div class="hero-content">
         <img class="hero-logo" src="Visual/ATOM-B_2.png" alt="ATOM-B" />
         <h1>
-          Deterministic physics for
-          <strong>drug discovery</strong>
+          Física determinista para
+          <strong>descubrimiento de fármacos</strong>
         </h1>
         <p>
-          ATOM-B analyzes functional regions of proteins using discrete physical maps,
-          enabling the identification of cavities, active sites and therapeutic regions with speed,
-          precision and traceability.
+          ATOM-B analiza regiones funcionales de proteínas mediante mapas físicos discretos,
+          permitiendo identificar cavidades, sitios activos y regiones terapéuticas con velocidad,
+          precisión y trazabilidad.
         </p>
         <div class="hero-buttons">
-          <a href="#contacto" class="btn btn-primary">Request demo</a>
-          <a href="#como-funciona" class="btn">See how it works</a>
+          <a href="#contacto" class="btn btn-primary">Solicitar demo</a>
+          <a href="#como-funciona" class="btn">Ver cómo funciona</a>
         </div>
       </div>
     </div>
   </main>
 
+  <!-- PROBLEM -->
   <section class="problem">
     <div class="container">
       <div class="center">
-        <div class="section-kicker">The current dilemma</div>
-        <h2 class="section-title">Computational discovery faces two limits</h2>
+        <div class="section-kicker">El dilema actual</div>
+        <h2 class="section-title">El descubrimiento computacional enfrenta dos límites</h2>
         <p class="section-copy">
-          Today's platforms often choose between costly physical simulations or statistical models dependent on historical data.
-          ATOM-B proposes a third path: fast, auditable discrete physical analysis.
+          Las plataformas actuales suelen elegir entre simulaciones físicas costosas o modelos
+          estadísticos dependientes de datos históricos. ATOM-B propone una tercera vía:
+          análisis físico discreto, rápido y auditable.
         </p>
       </div>
 
       <div class="two-grid">
         <article class="problem-card">
-          <h3>Physical simulations<br />Molecular Dynamics</h3>
+          <h3>Simulaciones físicas<br />Dinámica Molecular</h3>
           <p>
-            Strong physical rigor, but applying them to full systems can require high compute cost and long runtimes.
+            Ofrecen rigor físico, pero su aplicación a sistemas completos puede requerir
+            alto costo computacional y tiempos prolongados de ejecución.
           </p>
         </article>
 
         <article class="problem-card">
-          <h3>Generative<br />AI</h3>
+          <h3>Inteligencia Artificial<br />generativa</h3>
           <p>
-            Accelerates exploration, but may depend on historical data and lose predictive power for understudied or novel targets.
+            Acelera la exploración, pero puede depender de datos históricos y perder capacidad
+            predictiva frente a blancos poco estudiados o sin precedentes.
           </p>
         </article>
       </div>
     </div>
   </section>
 
+  <!-- PROPOSAL -->
   <section class="proposal">
     <div class="container center">
-      <div class="section-kicker">The approach</div>
-      <h2 class="section-title">ATOM-B analyzes only what physically matters</h2>
+      <div class="section-kicker">La propuesta</div>
+      <h2 class="section-title">ATOM-B analiza solo lo que físicamente importa</h2>
       <p class="section-copy">
-        Instead of simulating the whole molecular system, ATOM-B identifies only the regions that influence
-        the interaction between a protein and a potential drug.
+        En lugar de simular todo el sistema molecular, ATOM-B identifica únicamente las regiones
+        que influyen en la interacción entre una proteína y un posible fármaco.
       </p>
 
       <div class="highlight-box">
-        ATOM-B keeps the rigor of traditional physical methods, while reducing unnecessary computation by focusing on
-        cavities, interfaces, channels, active sites and functional regions.
+        ATOM-B mantiene el rigor de los métodos físicos tradicionales, pero reduce el trabajo
+        computacional innecesario al concentrarse en cavidades, interfaces, canales, sitios activos
+        y regiones funcionales.
       </div>
 
       <div class="three-grid">
         <article class="value-card">
-          <h3>Fast</h3>
-          <p>Processing designed to run in seconds or minutes depending on structural complexity.</p>
+          <h3>Rápido</h3>
+          <p>Procesamiento diseñado para ejecutarse en segundos o minutos según la complejidad estructural.</p>
         </article>
 
         <article class="value-card">
-          <h3>Physics-grounded</h3>
-          <p>Based on geometric, electrostatic and directional observables.</p>
+          <h3>Físico</h3>
+          <p>Basado en observables geométricos, electrostáticos y direccionales.</p>
         </article>
 
         <article class="value-card">
           <h3>Auditable</h3>
-          <p>Every prediction can be traced back to the voxel-level physical values that generated it.</p>
+          <p>Cada predicción puede rastrearse hasta los valores físicos del vóxel que la originó.</p>
         </article>
       </div>
     </div>
   </section>
 
+  <!-- HOW IT WORKS -->
   <section id="como-funciona" class="how">
     <div class="container split">
       <div class="image-frame">
-        <img src="Visual/3.png" alt="Researcher in laboratory" />
+        <img src="Visual/3.png" alt="Investigador en laboratorio" />
       </div>
 
       <div>
-        <div class="section-kicker">How it works</div>
-        <h2 class="section-title">From a protein structure to an auditable functional map</h2>
+        <div class="section-kicker">Cómo funciona</div>
+        <h2 class="section-title">De una estructura proteica a un mapa funcional auditable</h2>
         <p class="section-copy">
-          ATOM-B turns a molecular structure into physical maps that allow teams to locate, classify and compare functional regions.
+          ATOM-B transforma una estructura molecular en mapas físicos que permiten localizar,
+          clasificar y comparar regiones funcionales.
         </p>
 
         <div class="steps">
           <div class="step">
             <div class="step-number">1</div>
             <div>
-              <h3>3D protein</h3>
-              <p>Start from an experimental or modeled protein structure.</p>
+              <h3>Proteína 3D</h3>
+              <p>Se parte de una estructura proteica experimental o modelada.</p>
             </div>
           </div>
 
           <div class="step">
             <div class="step-number">2</div>
             <div>
-              <h3>Voxel evaluation</h3>
-              <p>The molecular space is split into small 3D volumes.</p>
+              <h3>Evaluación por vóxeles</h3>
+              <p>El espacio molecular se divide en pequeños volúmenes tridimensionales.</p>
             </div>
           </div>
 
@@ -1253,15 +1296,15 @@
             <div class="step-number">3</div>
             <div>
               <h3>Pocket Map + Scaffold Map</h3>
-              <p>Cavities, channels, interfaces and key structural regions are classified.</p>
+              <p>Se clasifican cavidades, canales, interfaces y regiones estructurales clave.</p>
             </div>
           </div>
 
           <div class="step">
             <div class="step-number">4</div>
             <div>
-              <h3>Traceable output</h3>
-              <p>Every prediction preserves its physical origin for review and audit.</p>
+              <h3>Resultado trazable</h3>
+              <p>Cada predicción conserva su origen físico para revisión y auditoría.</p>
             </div>
           </div>
         </div>
@@ -1269,165 +1312,177 @@
     </div>
   </section>
 
+  <!-- VOXEL -->
   <section class="voxel">
     <div class="container center">
-      <div class="section-kicker">Physical analysis</div>
-      <h2 class="section-title">What does each voxel analyze?</h2>
+      <div class="section-kicker">Análisis físico</div>
+      <h2 class="section-title">¿Qué analiza cada vóxel?</h2>
       <p class="section-copy">
-        ATOM-B evaluates three fundamental properties of each molecular region.
+        ATOM-B evalúa tres propiedades fundamentales de cada región molecular.
       </p>
 
       <div class="three-grid">
         <article class="value-card">
-          <h3>Geometric confinement</h3>
-          <p>Measures how accessible, deep, or protected a space is within a protein.</p>
+          <h3>Confinamiento geométrico</h3>
+          <p>
+            Identifica qué tan accesible, profundo o protegido es cada espacio dentro de una proteína.
+          </p>
         </article>
 
         <article class="value-card">
-          <h3>Local electrostatic gravity</h3>
-          <p>Evaluates predominant chemical forces that may favor or hinder molecular interaction.</p>
+          <h3>Gravedad local electrostática</h3>
+          <p>
+            Evalúa las fuerzas químicas predominantes que podrían favorecer o impedir una interacción molecular.
+          </p>
         </article>
 
         <article class="value-card">
-          <h3>Directional gradient vector</h3>
-          <p>Analyzes direction and magnitude of forces that guide a therapeutic molecule approach.</p>
+          <h3>Vector gradiente direccional</h3>
+          <p>
+            Analiza la dirección e intensidad de las fuerzas que guiarían el acercamiento de una molécula terapéutica.
+          </p>
         </article>
       </div>
     </div>
   </section>
 
+  <!-- OUTPUTS -->
   <section class="outputs">
     <div class="container center">
-      <div class="section-kicker">Outputs</div>
-      <h2 class="section-title">Results ready for analysis, comparison and decision</h2>
+      <div class="section-kicker">Entregables</div>
+      <h2 class="section-title">Resultados listos para análisis, comparación y decisión</h2>
       <p class="section-copy">
-        ATOM-B turns protein structures into actionable information for research teams, biotech and pharma.
+        ATOM-B convierte estructuras proteicas en información accionable para equipos de investigación,
+        biotech y farmacéuticas.
       </p>
 
       <div class="output-grid">
         <article class="output-card">
           <h3>Pocket Map</h3>
-          <p>Map of cavities, binding sites, channels and relevant interfaces.</p>
+          <p>Mapa de cavidades, sitios de unión, canales e interfaces relevantes.</p>
         </article>
 
         <article class="output-card">
           <h3>Scaffold Map</h3>
-          <p>Classification of rigid, flexible, exposed or overpacked regions.</p>
+          <p>Clasificación de regiones rígidas, flexibles, expuestas o sobreempaquetadas.</p>
         </article>
 
         <article class="output-card">
-          <h3>Pharmacophoric centers</h3>
-          <p>Identification of functional points where therapeutic interaction may occur.</p>
+          <h3>Centros farmacofóricos</h3>
+          <p>Identificación de puntos funcionales donde puede existir interacción terapéutica.</p>
         </article>
 
         <article class="output-card">
-          <h3>Auditable report</h3>
-          <p>Traceable explanation of each prediction based on discrete physical properties.</p>
+          <h3>Reporte auditable</h3>
+          <p>Explicación trazable de cada predicción basada en propiedades físicas discretas.</p>
         </article>
 
         <article class="output-card">
-          <h3>Interoperable files</h3>
-          <p>Export-ready outputs for docking, structural analysis or rational design workflows.</p>
+          <h3>Archivos interoperables</h3>
+          <p>Resultados exportables para docking, análisis estructural o diseño racional.</p>
         </article>
       </div>
     </div>
   </section>
 
+  <!-- CAPABILITIES -->
   <section class="capabilities">
     <div class="container center">
-      <div class="section-kicker">Capabilities</div>
-      <h2 class="section-title">A platform for early-stage SBDD decisions</h2>
+      <div class="section-kicker">Capacidades</div>
+      <h2 class="section-title">Una plataforma para decisiones tempranas en SBDD</h2>
       <p class="section-copy">
-        ATOM-B is designed to support early phases of structure-based drug discovery.
+        ATOM-B está diseñado para apoyar las etapas tempranas del descubrimiento racional de fármacos.
       </p>
 
       <div class="cap-grid">
         <article class="cap-card">
-          <h3>Cavity detection</h3>
-          <p>Locates pockets and functional spaces within proteins.</p>
+          <h3>Detección de cavidades</h3>
+          <p>Localiza bolsillos y espacios funcionales dentro de proteínas.</p>
         </article>
 
         <article class="cap-card">
-          <h3>Druggability assessment</h3>
-          <p>Prioritizes regions with therapeutic potential.</p>
+          <h3>Evaluación de drogabilidad</h3>
+          <p>Prioriza regiones con potencial terapéutico.</p>
         </article>
 
         <article class="cap-card">
-          <h3>Allosteric sites</h3>
-          <p>Identifies regions that could regulate multiple protein functions.</p>
+          <h3>Sitios alostéricos</h3>
+          <p>Identifica regiones que podrían regular múltiples funciones proteicas.</p>
         </article>
 
         <article class="cap-card">
-          <h3>Metal cofactors</h3>
-          <p>Recognizes structural and catalytic influence of Zn, Fe, Mg, Cu and Mn.</p>
+          <h3>Cofactores metálicos</h3>
+          <p>Reconoce la influencia estructural y catalítica de Zn, Fe, Mg, Cu y Mn.</p>
         </article>
 
         <article class="cap-card">
-          <h3>Variant intelligence</h3>
-          <p>Evaluates how mutations may alter function, stability or resistance.</p>
+          <h3>Inteligencia de variantes</h3>
+          <p>Evalúa cómo mutaciones pueden alterar función, estabilidad o resistencia.</p>
         </article>
 
         <article class="cap-card">
-          <h3>Topological atlas</h3>
-          <p>Turns protein structures into searchable, comparable and scalable maps.</p>
+          <h3>Atlas topológico</h3>
+          <p>Convierte estructuras proteicas en mapas consultables, comparables y escalables.</p>
         </article>
       </div>
     </div>
   </section>
 
+  <!-- DIFFERENCE -->
   <section id="diferenciadores" class="difference">
     <div class="container center">
-      <div class="section-kicker">Differentiators</div>
-      <h2 class="section-title">Not a black box. Not massive simulation.</h2>
+      <div class="section-kicker">Diferenciadores</div>
+      <h2 class="section-title">No es caja negra. No es simulación masiva.</h2>
       <p class="section-copy">
-        ATOM-B operates on auditable discrete physics, focusing on the regions that truly participate in molecular function.
+        ATOM-B opera sobre física discreta auditable, concentrándose en las regiones que realmente
+        participan en la función molecular.
       </p>
 
       <div class="comparison">
         <table>
           <thead>
             <tr>
-              <th>Criteria</th>
-              <th>Molecular Dynamics</th>
-              <th>Generative AI</th>
+              <th>Criterio</th>
+              <th>Dinámica Molecular</th>
+              <th>IA generativa</th>
               <th>ATOM-B</th>
             </tr>
           </thead>
 
           <tbody>
             <tr>
-              <td>Speed</td>
-              <td>Low / medium</td>
-              <td>High</td>
-              <td class="highlight">High</td>
+              <td>Velocidad</td>
+              <td>Baja / media</td>
+              <td>Alta</td>
+              <td class="highlight">Alta</td>
             </tr>
 
             <tr>
-              <td>Compute cost</td>
-              <td>High</td>
-              <td>Medium</td>
-              <td class="highlight">Low / medium</td>
+              <td>Costo computacional</td>
+              <td>Alto</td>
+              <td>Medio</td>
+              <td class="highlight">Bajo / medio</td>
             </tr>
 
             <tr>
-              <td>Traceability</td>
-              <td>High</td>
+              <td>Trazabilidad</td>
+              <td>Alta</td>
               <td>Variable</td>
-              <td class="highlight">High</td>
+              <td class="highlight">Alta</td>
             </tr>
 
             <tr>
-              <td>Historical data dependency</td>
+              <td>Dependencia de datos históricos</td>
               <td>No</td>
-              <td>Yes</td>
+              <td>Sí</td>
               <td class="highlight">No</td>
             </tr>
 
             <tr>
-              <td>Understudied targets</td>
-              <td>Limited by cost</td>
-              <td>Limited by data</td>
-              <td class="highlight">Analyzable by physics</td>
+              <td>Blancos poco estudiados</td>
+              <td>Limitado por costo</td>
+              <td>Limitado por datos</td>
+              <td class="highlight">Analizable por física</td>
             </tr>
           </tbody>
         </table>
@@ -1435,130 +1490,142 @@
     </div>
   </section>
 
+  <!-- VALIDATION -->
   <section class="validation">
     <div class="container center">
-      <div class="section-kicker">Validation</div>
-      <h2 class="section-title">Verifiable predictions against structural evidence</h2>
+      <div class="section-kicker">Validación</div>
+      <h2 class="section-title">Predicciones verificables contra evidencia estructural</h2>
       <p class="section-copy">
-        ATOM-B is designed so each output can be contrasted against structural information such as crystallographic coordinates,
-        reported cofactors, structural waters and functional residues.
+        ATOM-B está diseñado para que cada resultado pueda contrastarse contra información estructural,
+        como coordenadas cristalográficas, cofactores reportados, moléculas de agua estructural y residuos funcionales.
       </p>
 
       <div class="validation-grid">
         <article class="validation-card">
-          <h3>Catalytic cofactors</h3>
-          <p>Comparison between predicted pharmacophoric centers and experimentally observed metals/cofactors.</p>
+          <h3>Cofactores catalíticos</h3>
+          <p>
+            Comparación entre centros farmacofóricos predichos y metales o cofactores observados experimentalmente.
+          </p>
         </article>
 
         <article class="validation-card">
-          <h3>Structural water</h3>
-          <p>Identification of regions compatible with ordered water molecules inside cavities.</p>
+          <h3>Agua estructural</h3>
+          <p>
+            Identificación de regiones compatibles con moléculas de agua ordenada dentro de cavidades.
+          </p>
         </article>
 
         <article class="validation-card">
-          <h3>Voxel-level traceability</h3>
-          <p>Every prediction can be traced to confinement, electrostatics and force direction.</p>
+          <h3>Trazabilidad por vóxel</h3>
+          <p>
+            Cada predicción puede rastrearse hasta confinamiento, electrostática y dirección de fuerza.
+          </p>
         </article>
       </div>
     </div>
   </section>
 
+  <!-- ATLAS -->
   <section id="atlas" class="atlas">
     <div class="container">
       <div class="atlas-hero">
         <div class="atlas-visual">
-          <h2>The Universal<br />Topological<br />Atlas</h2>
+          <h2>El Atlas<br />Topológico<br />Universal</h2>
         </div>
 
         <div class="atlas-side">
-          <img src="Visual/15.jpg" alt="Laboratory" />
+          <img src="Visual/15.jpg" alt="Laboratorio" />
           <div class="atlas-zoom-frame">
-            <img class="atlas-zoom-img" src="Visual/Airbrush-IMAGE-ENHANCER-1780429889458-1780429889458.png" alt="Molecular protein" />
+            <img class="atlas-zoom-img" src="Visual/Airbrush-IMAGE-ENHANCER-1780429889458-1780429889458.png" alt="Proteína molecular" />
           </div>
         </div>
       </div>
 
       <div class="atlas-text">
-        <h2>More efficient than Molecular Dynamics</h2>
+        <h2>Más eficiente que la Dinámica Molecular</h2>
 
         <div>
           <p>
-            While Molecular Dynamics computes the behavior of the entire protein and its environment,
-            ATOM-B focuses only on relevant regions, drastically reducing analysis time and resources.
+            Mientras la Dinámica Molecular calcula el comportamiento de toda la proteína y su entorno,
+            ATOM-B se concentra únicamente en las regiones relevantes, reduciendo drásticamente el tiempo
+            y los recursos necesarios para el análisis.
           </p>
 
           <p>
-            It can transform protein structures into indexable functional maps, enabling search, comparison and
-            prioritization of therapeutic regions at scale.
+            Puede transformar estructuras proteicas en mapas funcionales indexables, permitiendo búsquedas,
+            comparaciones y priorización de regiones terapéuticas a escala.
           </p>
         </div>
       </div>
     </div>
   </section>
 
+  <!-- USE CASES -->
   <section class="usecases">
     <div class="container center">
-      <div class="section-kicker">Use cases</div>
-      <h2 class="section-title">Built for teams where mistakes are costly</h2>
+      <div class="section-kicker">Casos de uso</div>
+      <h2 class="section-title">Diseñado para equipos donde el error cuesta</h2>
       <p class="section-copy">
-        ATOM-B is aimed at organizations that need speed, physical rigor and traceability in early decisions.
+        ATOM-B está orientado a organizaciones que necesitan velocidad, rigor físico y trazabilidad en decisiones tempranas.
       </p>
 
       <div class="usecase-grid">
         <article class="usecase-card">
-          <h3>Pharma</h3>
-          <p>Early prioritization of targets, active sites and therapeutic opportunities.</p>
+          <h3>Farmacéuticas</h3>
+          <p>Priorización temprana de blancos, sitios activos y oportunidades terapéuticas.</p>
         </article>
 
         <article class="usecase-card">
           <h3>Biotech</h3>
-          <p>Exploration of understudied proteins and initial structural validation.</p>
+          <p>Exploración de proteínas poco estudiadas y validación estructural inicial.</p>
         </article>
 
         <article class="usecase-card">
-          <h3>Research</h3>
-          <p>Physical analysis of cavities, cofactors, interfaces and functional regions.</p>
+          <h3>Investigación</h3>
+          <p>Análisis físico de cavidades, cofactores, interfaces y regiones funcionales.</p>
         </article>
 
         <article class="usecase-card">
-          <h3>Technology partners</h3>
-          <p>Integration with docking, visualization or computational discovery pipelines.</p>
+          <h3>Partners tecnológicos</h3>
+          <p>Integración con pipelines de docking, visualización o descubrimiento computacional.</p>
         </article>
       </div>
     </div>
   </section>
 
+  <!-- CONTACT -->
   <section id="contacto" class="contact">
     <div class="container contact-grid">
       <div class="contact-copy">
-        <h2>Designed for organizations operating where errors are costly.</h2>
+        <h2>Diseñado para empresas que operan donde el error cuesta.</h2>
         <p>
-          At ATOM-B we remove black boxes with a platform where every prediction is auditable down to the voxel level.
-          If you need scientific rigor, speed and traceability, request a demo.
+          En ATOM-B eliminamos las cajas negras mediante una plataforma donde cada predicción
+          es auditable hasta el nivel de un vóxel. Si buscas rigurosidad científica, velocidad
+          y trazabilidad, solicita una demo.
         </p>
       </div>
 
       <div class="cta-form-card">
-        <h2>Technical evaluation</h2>
+        <h2>Evaluación técnica</h2>
         <p>
-          Briefly share your use case with our team. We will review the information and typically respond
-          within 24 to 48 business hours.
+          Comparte brevemente tu caso de uso con nuestro equipo. Revisaremos la información y responderemos normalmente
+          en un plazo de 24 a 48 horas hábiles.
         </p>
 
-        <section class="technical-contact" aria-label="Technical contact card">
+        <section class="technical-contact" aria-label="Tarjeta de contacto técnico">
           <div class="contact-details">
-            <p><strong>Please include in your message:</strong></p>
+            <p><strong>Incluye en tu mensaje:</strong></p>
 
             <ul>
-              <li>Name and company</li>
+              <li>Nombre y empresa</li>
               <li>Sector</li>
-              <li>Use case</li>
-              <li>Evaluation objective</li>
-              <li>Contact phone number, if applicable</li>
+              <li>Caso de uso</li>
+              <li>Objetivo de la evaluación</li>
+              <li>Teléfono de contacto, si aplica</li>
             </ul>
 
             <p>
-              <strong>Email:</strong>
+              <strong>Correo:</strong>
               <a href="mailto:info@atom-b.com">info@atom-b.com</a>
             </p>
           </div>
@@ -1568,38 +1635,39 @@
             href="mailto:info@atom-b.com"
             onclick="openTechnicalEmail(event)"
           >
-            Request technical evaluation
+            Solicitar evaluación técnica
           </a>
 
           <p class="contact-note">
-            By contacting us by email, you agree that we may process the personal data you provide in accordance with our
-            <a href="/privacy-en">Privacy Notice</a>.
+            Al contactarnos por correo electrónico, aceptas que tratemos los datos personales que nos proporciones conforme a nuestro
+            <a href="/privacy">Aviso de Privacidad</a>.
           </p>
         </section>
       </div>
     </div>
   </section>
 
+  <!-- FOOTER -->
   <footer>
     <div class="container footer-grid">
       <div>
         <div class="footer-brand">
           <img class="footer-logo-img" src="ATOM-B_1.png" alt="ATOM-B" />
         </div>
-        <p>Puebla, Mexico</p>
+        <p>Puebla, México</p>
         <p>+52 222 964 8206</p>
       </div>
 
       <div class="footer-links">
-        <a href="#inicio">Home</a>
-        <a href="#como-funciona">How it works</a>
-        <a href="#diferenciadores">Differentiators</a>
-        <a href="#contacto">Contact</a>
-        <a href="privacy-en.html">Privacy</a>
+        <a href="#inicio">Inicio</a>
+        <a href="#como-funciona">Cómo funciona</a>
+        <a href="#diferenciadores">En qué nos diferenciamos</a>
+        <a href="#contacto">Contacto</a>
+        <a href="privacy.html">Privacidad</a>
       </div>
 
       <div class="footer-copy">
-        <p>© 2026 ATOM-B. All rights reserved.</p>
+        <p>© 2026 ATOM-B. Todos los derechos reservados.</p>
       </div>
     </div>
   </footer>
@@ -1726,13 +1794,14 @@
     function openTechnicalEmail(event) {
       if (event) event.preventDefault();
 
-      var subject = encodeURIComponent("Technical evaluation request - ATOM-B");
+      var subject = encodeURIComponent("Solicitud de evaluacion tecnica - ATOM-B");
       var body = encodeURIComponent(
-        "Name:\r\nCompany:\r\nSector:\r\nPhone:\r\n\r\nUse case:\r\n\r\nEvaluation objective:\r\n"
+        "Nombre:\r\nEmpresa:\r\nSector:\r\nTelefono:\r\n\r\nCaso de uso:\r\n\r\nObjetivo de la evaluacion:\r\n"
       );
 
       window.location.href = "mailto:info@atom-b.com?subject=" + subject + "&body=" + body;
     }
   </script>
+
 </body>
 </html>
